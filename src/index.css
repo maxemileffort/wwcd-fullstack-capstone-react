@@ -1,5 +1,262 @@
+
+/* Some CSS Setup - nothing to do with flexbox */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+box-sizing: inherit;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+font-family: sans-serif;
+margin: 0;
+background-image: linear-gradient(270deg, #777 0%, #222 50%, #777 100%);
+color:white;
+}
+
+header {
+background-image: 
+  linear-gradient(
+  rgba(0,0,0,0.5),
+  rgba(0,0,0,0.5)
+  ),
+  url('./img/ben-hershey-417746-unsplash.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+background-position: 0;
+height: 800px;
+}
+
+header p, a {
+color:white;
+font-weight: 100;
+letter-spacing: 2px;
+text-decoration: none;
+background:rgba(0,0,0,0.2);
+padding:20px 5px;
+display: inline-block;
+width: 100%;
+text-align: center;
+transition:all 0.5s;
+}
+
+.top {
+display: flex;
+flex-direction: column;
+}
+
+.tagline{
+margin-top: 450px;
+}
+
+.link-no-box, .single-tab{
+padding: 0;
+width: auto;
+background: none;
+letter-spacing: normal;
+text-decoration: underline;
+color: lightgreen;
+}
+
+.single-tab:active{
+color: yellow;
+}
+
+a:hover {
+background:rgba(0,0,0,0.3);
+color: crimson;
+}
+
+.toggleNav {
+display: none;
+}
+
+.underline {
+text-decoration: underline;
+}
+
+.underline:hover {
+color: crimson;
+}
+
+main {
+display: flex;
+}
+
+.row{
+display: flex;
+}
+
+.main--unflex{
+display: block;
+}
+
+form{
+display: flex;
+flex-direction: column;
+}
+
+.benefits ul{
+list-style: none;
+}
+
+.hero{
+max-width: 66%;
+}
+
+.story {
+display: flex;
+align-items: flex-end;
+width:100%;
+height: 150px;
+margin: 5px;
+border-radius: 5px;
+background-image: 
+  linear-gradient(
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5)
+  ),
+  url("https://images.unsplash.com/photo-1533979897165-55ab4743add8?ixlib=rb-0.3.5&s=2eac89905a87c3392bf7eea0d71a1777&auto=format&fit=crop&w=934&q=80");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: 0;
+}
+
+.card{
+height: auto;
+width: 30%;
+margin: 1% auto;
+}
+
+.wrapper {
+max-width: 1000px;
+margin: 0 auto;
+}
+
+input {
+padding:10px;
+margin: 5px 0;
+border:0;
+border-radius: 5px;
+}
+
+h1 {
+font-family: 'Permanent Marker', cursive;
+}
+
+section, footer {
+text-align: center;
+background:rgba(0,0,0,0.2);
+padding:20px;
+margin:20px 0;
+color:white;
+font-weight: 100;
+width: auto;
+}
+
+.dashboard__format{
+width: 100%;
+}
+
+#dashboard-player-list{
+max-height: 1000px;
+overflow: auto;
+}
+
+.player{
+list-style: none;
+}
+
+.lineup{
+width: 50%;
+}
+
+.btn {
+height: 40px;
+max-width: 150px;
+background-color: crimson;
+border: none;
+border-radius: 12px;
+cursor: pointer;
+}
+
+.news-slider{
+z-index: 4;
+}
+
+.news-buttons {
+z-index: 5;
+}
+
+/* Flex Container */
+.flex-nav ul, .flex-nav-footer ul {
+border:1px solid black;
+list-style: none;
+margin: 0;
+padding: 0;
+display:flex;
+}
+
+.flex-nav-footer li {
+flex:3;
+}
+
+/* Flex Item */
+.flex-nav li {
+flex:3;
+}
+
+.flex-nav .social {
+flex:1;
+}
+
+
+@media all and (max-width:1000px) {
+.story{
+  height: 250px;
+} 
+
+.flex-nav ul {
+  flex-wrap:wrap;
+}
+
+.flex-nav li {
+  flex:1 1 50%;
+}
+
+.flex-nav .social {
+  flex:1 1 25%;
+}
+
+}
+
+
+/* This is where the magic Happens */
+
+@media all and (max-width:1000px) {
+
+.flex-nav li {
+  flex-basis:100%;
+}
+  
+/* Turn on flexbox */
+.wrapper {
+  display:flex;
+  flex-direction:column;
+}
+
+.toggleNav {
+  display: block;
+}
+
+.flex-nav ul {
+  display: none;
+}
+
+.flex-nav ul.open {
+  display:flex;
+}
+
+ 
 }
