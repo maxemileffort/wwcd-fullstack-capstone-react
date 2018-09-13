@@ -1,14 +1,19 @@
 import React from 'react';
-
+import { BrowserRouter as Router,
+	Route, 
+	Link, 
+	Redirect,
+	withRouter 
+  } from "react-router-dom";
+  
 export default function Header(){
     return (
         <header className="top">
-        	<h2>Hero</h2>
         	<div className="banner">
-        		<a href="./index.html">
+        		<Link to="/">
         			<h1>Winner Winner</h1>
         			<h1>Chicken Dinner</h1>
-        		</a>	
+        		</Link>	
         	</div>
         	<div className="tagline">
         		<p>Daily Fantasy Sports Stats</p>

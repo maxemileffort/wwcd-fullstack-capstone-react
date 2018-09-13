@@ -1,5 +1,11 @@
 import React from 'react'
-
+import { BrowserRouter as Router,
+    Route, 
+    Link, 
+    Redirect,
+    withRouter 
+  } from "react-router-dom";
+  
 export default function LandingPage(){
     return (
         <main>
@@ -9,8 +15,8 @@ export default function LandingPage(){
         <p>How about when your sleeper never even gets out of bed? Grinds the gears, am I right?</p>
         <p>Maybe you just need an extra edge, to go to the next winning tier of the tournament plays?</p>
         <div className="">
-        <a href="#">Join Team WWCD: <span className="underline">Signup</span></a>
-        <a href="#">Already have an account? <span className="underline">Login</span></a>
+        <Link to="/signup">Join Team WWCD: <span className="underline">Signup</span></Link>
+        <Link to="/login">Already have an account? <span className="underline">Login</span></Link>
         </div>
         </section>
         

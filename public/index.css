@@ -80,9 +80,9 @@ text-decoration: underline;
 color: crimson;
 }
 
-main {
+/* main {
 display: flex;
-}
+} */
 
 .row{
 display: flex;
@@ -170,6 +170,10 @@ list-style: none;
 
 .lineup{
 width: 50%;
+}
+
+.test{
+  display: flex;
 }
 
 .btn {

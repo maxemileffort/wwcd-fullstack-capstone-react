@@ -1,26 +1,39 @@
 import React from 'react';
+import { BrowserRouter as Router,
+  Route, 
+  Link, 
+  Redirect,
+  withRouter 
+} from "react-router-dom";
 
-export default function Navbar(){
-    return (
-    <nav className="flex-nav">
-      <a href="#" className="toggleNav"><i className="fas fa-bars"></i> Menu</a>
-      <ul>
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="#">News</a></li>
-        <li><a href="#">Your Lineups</a></li>
-        <li><a href="#">Sign Up</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
-        <li className="social">
-          <a href="#"><i className="fab fa-twitter"></i></a>
-        </li>
-        <li className="social">
-          <a href="#"><i className="fab fa-facebook-square"></i></a>
-        </li>
-        <li className="social">
-          <a href="#"><i className="fab fa-instagram"></i></a>
-        </li>
-      </ul>
-    </nav>
-        
-    )}
+function IsLoggedIn(props){
+  if (props.loggedIn){
+    return (<li><Link to={"/dashboard/"+props.user.username}>Your Lineups</Link></li>)
+  } else {
+    return (<li><Link to="/login">Log In</Link></li>)
+  }
+}
+
+export default function Navbar(props){
+  return (
+  <nav className="flex-nav">
+    <a href="#" className="toggleNav"><i className="fas fa-bars"></i> Menu</a>
+    <ul>
+      <li><Link to="/">Home</Link></li>
+      {/* <li><Link to="#">News</Link></li> feature to be added later*/}
+      <IsLoggedIn />
+      <li><Link to="/about">About Us</Link></li>
+      <li><Link to="/contact">Contact</Link></li>
+      <li className="social">
+        <Link to="https://www.twitter.com"><i className="fab fa-twitter"></i></Link>
+      </li>
+      <li className="social">
+        <Link to="https://www.facebook.com"><i className="fab fa-facebook-square"></i></Link>
+      </li>
+      <li className="social">
+        <Link to="https://www.instagram.com"><i className="fab fa-instagram"></i></Link>
+      </li>
+    </ul>
+  </nav>
+      
+)}
