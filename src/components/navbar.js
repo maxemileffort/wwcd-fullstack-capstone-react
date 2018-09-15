@@ -6,22 +6,24 @@ import { BrowserRouter as Router,
   withRouter 
 } from "react-router-dom";
 
+
 function IsLoggedIn(props){
   if (props.loggedIn){
-    return (<li><Link to={"/dashboard/"+props.user.username}>Your Lineups</Link></li>)
+    return (<li><Link to="/dashboard/">Dashboard</Link></li>)
   } else {
-    return (<li><Link to="/login">Log In</Link></li>)
+    return (<li><Link to="/user/login">Log In</Link></li>)
   }
 }
 
 export default function Navbar(props){
+  
   return (
   <nav className="flex-nav">
-    <a href="#" className="toggleNav"><i className="fas fa-bars"></i> Menu</a>
+    <Link to="#" className="toggleNav"><i className="fas fa-bars"></i> Menu</Link>
     <ul>
       <li><Link to="/">Home</Link></li>
       {/* <li><Link to="#">News</Link></li> feature to be added later*/}
-      <IsLoggedIn />
+      {IsLoggedIn(props)}
       <li><Link to="/about">About Us</Link></li>
       <li><Link to="/contact">Contact</Link></li>
       <li className="social">

@@ -13,17 +13,17 @@ import Admin from './admin'
 import About from './about'
 import Contact from './contact'
 
-export default function Content(state){
-    console.log(state)
+export default function Content(_props){
+    console.log(_props)
     return(
-        <div>
-            <Route exact path='/' render={(props)=><LandingPage {...props} state={state}/>} />
-            <Route path='/dashboard' render={(props)=><Dashboard {...props} state={state}/>} />
-            <Route exact path='/login' render={(props)=><Login {...props} state={state}/>} />
-            <Route exact path='/signup' render={(props)=><Signup {...props} state={state}/>} />
-            <Route exact path='/admin' render={(props)=><Admin {...props} state={state}/>} />
-            <Route exact path='/about' render={(props)=><About {...props} state={state}/>} />
-            <Route exact path='/contact' render={(props)=><Contact {...props} state={state}/>} />
-        </div>
+        <span>
+            <Route exact path='/' render={(props)=><LandingPage props={props}/>} />
+            <Route path='/dashboard' render={(props)=><Dashboard props={props}/>} />
+            <Route exact path='/user/login' render={(props)=><Login props={props} handleLogin={_props.handleLogin}/>} />
+            <Route exact path='/user/create' render={(props)=><Signup props={props}/>} />
+            <Route exact path='/admin' render={(props)=><Admin props={props}/>} />
+            <Route exact path='/about' component={About} />
+            <Route exact path='/contact' component={Contact} />
+        </span>
     )
 }

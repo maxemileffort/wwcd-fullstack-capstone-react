@@ -9,7 +9,7 @@ import { BrowserRouter as Router,
 export default function Admin(props){
     console.log(props)
     // if (!props.state.props.loggedIn){
-    //     return <Redirect to="/login" />
+    //     return <Redirect to="/user/login" />
     // } else if (props.state.props.user.accountType !== "Admin"){
     //     return <Redirect to="/dashboard" />
     // } else if (props.state.props.user.accountType === "Admin"){
