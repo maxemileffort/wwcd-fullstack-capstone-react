@@ -1,10 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router,
-    Route, 
-    Link, 
-    Redirect,
-    withRouter 
-  } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export default function Admin(props){
     console.log(props)

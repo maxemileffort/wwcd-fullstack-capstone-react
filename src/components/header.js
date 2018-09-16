@@ -8,7 +8,7 @@ export default function Header(props){
     return(
         <div>
             <Hero />
-            <Navbar props={props}/>
+            <Navbar {...props}/>
         </div>
         
         )}

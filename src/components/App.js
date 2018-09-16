@@ -18,6 +18,7 @@ class App extends React.Component{
         this.handleSignup = this.handleSignup.bind(this)
         this.handleLogin = this.handleLogin.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
+        this.checkEmailExists = this.checkEmailExists.bind(this)
     }
 
     handleLogin(email, password){
@@ -49,6 +50,34 @@ class App extends React.Component{
             })
             this.props.history.push("/user/login")
           });
+    }
+
+    checkEmailExists(inputEmail){
+        // clear the error before checking again
+        this.setState({
+            error: null
+        })
+
+        let url = `https://dfs-analytics-react-capstone.herokuapp.com/check-duplicate-email/${inputEmail}`
+        
+        axios.get(url)
+        .then(response=>{
+            console.log(response)
+            if (response.data.entries.length !== 0){
+                this.setState({
+                    error: "Cannot use this email address."
+                })
+                document.querySelector("#create-submit").setAttribute("disabled", "disabled")
+            } else {
+                document.querySelector("#create-submit").removeAttribute("disabled")
+            }
+        })
+        .catch(error=>{
+            console.log(error)
+            this.setState({
+                error: "Cannot use this email address."
+            })
+        })
     }
 
     handleSignup(email, username, password1, password2){
@@ -109,7 +138,12 @@ class App extends React.Component{
             <div className="wrapper">
                 <Header isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout}/>
                 <div style={{color: 'red'}} id="error">{this.state.error}</div>
-                <Content props={this.state} handleLogin={this.handleLogin} handleSignup={this.handleSignup}/>
+                <Content 
+                    props={this.state} 
+                    handleLogin={this.handleLogin} 
+                    handleSignup={this.handleSignup}
+                    checkEmailExists={this.checkEmailExists}
+                    />
                 <Footer />
             </div>
         )

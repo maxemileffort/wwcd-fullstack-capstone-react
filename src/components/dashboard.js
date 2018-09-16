@@ -1,10 +1,5 @@
 import React, { Fragment } from 'react';
-import { BrowserRouter as Router,
-	Route, 
-	Link, 
-	Redirect,
-	withRouter 
-  } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import Account from './account'
 import Rundown from './rundown'
