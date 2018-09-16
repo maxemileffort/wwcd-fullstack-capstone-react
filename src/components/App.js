@@ -15,13 +15,9 @@ class App extends React.Component{
             user: null,
             error: null
         }
-        this.handleSignup = this.handleSignup.bind(this)
-        this.handleLogin = this.handleLogin.bind(this)
-        this.handleLogout = this.handleLogout.bind(this)
-        this.checkEmailExists = this.checkEmailExists.bind(this)
     }
 
-    handleLogin(email, password){
+    handleLogin = (email, password)=>{
         console.log('Trying to login.')
         let _email = email.current.value;
         let _password = password.current.value
@@ -52,7 +48,7 @@ class App extends React.Component{
           });
     }
 
-    checkEmailExists(inputEmail){
+    checkEmailExists = (inputEmail) => {
         // clear the error before checking again
         this.setState({
             error: null
@@ -80,7 +76,7 @@ class App extends React.Component{
         })
     }
 
-    handleSignup(email, username, password1, password2){
+    handleSignup = (email, username, password1, password2)=>{
         console.log('Trying to signup.')
         let _email = email.current.value;
         let _username = username.current.value;
@@ -92,12 +88,12 @@ class App extends React.Component{
         _password2 = _password2.trim()
         if(_username === '' || _email === '' || _password1 === '' || _password2 === ''){
             this.setState({
-                error: `<p>All fields required</p>`
+                error: `All fields required`
             })
             return false;
         } else if(_password1 !== _password2){
             this.setState({
-                error: `<p>Passwords must match.</p>`
+                error: `Passwords must match.`
             })
             return false;
         } else {
@@ -125,13 +121,44 @@ class App extends React.Component{
         }
     }
 
-    handleLogout(){
+    handleLogout = () => {
         this.setState({
             loggedIn: false,
             user: null,
             error: null
         })
     }
+
+    sendStatsToDb = (season, week) => {
+		let period = {
+			season,
+			week
+        };
+        
+        let url = 'https://dfs-analytics-react-capstone.herokuapp.com/send-stats-to-db'
+        
+        axios.post(url, period)
+        .then(response=>{
+            console.log(response)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+    
+    sendSalariesToDb = (file) => {
+        let url = 'https://dfs-analytics-react-capstone.herokuapp.com/send-salaries-to-db/';
+
+        // stackoverlow solution with axios
+        // var formData = new FormData();
+        // var imagefile = document.querySelector('#file');
+        // formData.append("image", imagefile.files[0]);
+        // axios.post(url, file, {
+        //     headers: {
+        //       'Content-Type': 'multipart/form-data'
+        //     }
+        // }).then(response=>{console.log(response)}).catch(err=>{console.log(err)})
+	}
 
     render(){
         return(
@@ -143,6 +170,8 @@ class App extends React.Component{
                     handleLogin={this.handleLogin} 
                     handleSignup={this.handleSignup}
                     checkEmailExists={this.checkEmailExists}
+                    sendStatsToDb={this.sendStatsToDb}
+                    sendSalariesToDb={this.sendSalariesToDb}
                     />
                 <Footer />
             </div>

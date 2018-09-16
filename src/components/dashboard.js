@@ -5,7 +5,7 @@ import Account from './account'
 import Rundown from './rundown'
 
 export default function Dashboard(props){
-	console.log(props.props)
+	console.log(props)
 	// check to see if user, who is trying to go to dashboard,
 	// 	is logged in. if not, redirect to login page
 	if (props.props.loggedIn){
@@ -13,7 +13,8 @@ export default function Dashboard(props){
 		<Fragment>
 			<Rundown />
 			<Account /> 
-		</Fragment>)
+		</Fragment>
+		)
 	} else {
 		return (<Redirect to="/user/login"/>)
 	}

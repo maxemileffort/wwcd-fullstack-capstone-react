@@ -3,6 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 
 export default function Admin(props){
     console.log(props)
+    let season = React.createRef();
+    let week = React.createRef();
+    let file = React.createRef();
     if (!props.props.loggedIn){
         return <Redirect to="/user/login" />
     } else if (props.props.user.accountType !== "Admin"){
@@ -12,17 +15,26 @@ export default function Admin(props){
             <div>
                 <h2>Admin Page</h2>
                 <main className="main--unflex">
-                    <form action="#" method="post" id="db-update">
+                    <form 
+                        action="#" 
+                        method="post" 
+                        id="db-update" 
+                        onSubmit={event=>{
+                            event.preventDefault();
+                            props.sendStatsToDb(season.current.value, week.current.value)
+                            console.log(file)
+                            // props.props.sendSalariesToDb(file)
+                        }}>
                         <p>Download <Link className="link-no-box" to="https://www.draftkings.com/lineup/upload" target="_blank">Salaries</Link></p>
                         <section>
                             <div className="file-chooser">
                                 <h4>Upload Salaries Here</h4>
-                                <input type="file" name="salaries" id="salaries-file" accept=".csv"/>
+                                <input ref={file} type="file" name="salaries" id="salaries-file" accept=".csv"/>
                             </div>
                             <div className="projections-tool">
                                 <h4>Projections</h4>
-                                <input type="number" name="season" id="season" placeholder="season"/>
-                                <input type="number" name="week" id="week" placeholder="week"/>
+                                <input ref={season} type="number" name="season" id="season" placeholder="season"/>
+                                <input ref={week} type="number" name="week" id="week" placeholder="week"/>
                                 <input type="submit" className="btn admin-submit" value="Populate DB" />
                             </div>
                         </section>
