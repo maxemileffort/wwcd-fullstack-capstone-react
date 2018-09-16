@@ -1,16 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router,
-    Route, 
-    Link, 
-    Redirect,
-    withRouter
-  } from "react-router-dom";
-import axios from 'axios'
+import { withRouter } from "react-router-dom";
+import axios from 'axios';
   
 import Header from './header'
 import Content from './content'
 import Footer from './footer'
-import Admin from './admin';
 
 class App extends React.Component{ 
     
@@ -37,7 +31,8 @@ class App extends React.Component{
           .then((response)=>{
             this.setState({
                 loggedIn: true,
-                user: response.data.user
+                user: response.data.user,
+                error: null
             })
             if(this.state.user.accountType === 'Admin'){
                 // if user that logs in is Admin, route to admin page
@@ -50,9 +45,9 @@ class App extends React.Component{
         .catch((error)=>{
             console.log(error);
             this.setState({
-                error: error
+                error: "Auth failed."
             })
-            this.props.history.push("/")
+            this.props.history.push("/user/login")
           });
     }
 
@@ -85,7 +80,8 @@ class App extends React.Component{
         .then((response)=>{
             this.setState({
                 loggedIn: true,
-                user: response.data.user
+                user: response.data.user,
+                error: null
             })
             // route to dashboard after successfully creating user
             this.props.history.push("/dashboard")

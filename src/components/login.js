@@ -18,7 +18,7 @@ export default function Login(props){
         method="POST" 
         onSubmit={event=>{
           event.preventDefault()
-          props.props.handleLogin(email, password)
+          props.handleLogin(email, password)
         }}>
           <input ref={email} id="login-email" type="email" name="email" placeholder="Email" />
           <input ref={password} id="login-password" type="password" name="password"  placeholder="Password" />

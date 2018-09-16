@@ -8,11 +8,11 @@ import { BrowserRouter as Router,
 
 export default function Admin(props){
     console.log(props)
-    // if (!props.state.props.loggedIn){
-    //     return <Redirect to="/user/login" />
-    // } else if (props.state.props.user.accountType !== "Admin"){
-    //     return <Redirect to="/dashboard" />
-    // } else if (props.state.props.user.accountType === "Admin"){
+    if (!props.props.loggedIn){
+        return <Redirect to="/user/login" />
+    } else if (props.props.user.accountType !== "Admin"){
+        return <Redirect to="/dashboard" />
+    } else if (props.props.user.accountType === "Admin"){
         return (
             <div>
                 <h2>Admin Page</h2>
@@ -37,7 +37,7 @@ export default function Admin(props){
                 </main>
             </div>
             )
-    // } else {
-    //    return <Redirect to="/" />
-    // }
+    } else {
+       return <Redirect to="/" />
+    }
 }

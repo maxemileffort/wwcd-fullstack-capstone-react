@@ -25,7 +25,7 @@ header {
     rgba(0,0,0,0.5),
     rgba(0,0,0,0.5)
   	),
-  	url('../img/ben-hershey-417746-unsplash.jpg');
+  	url('./img/ben-hershey-417746-unsplash.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0;
