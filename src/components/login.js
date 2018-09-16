@@ -18,12 +18,11 @@ export default function Login(props){
         method="POST" 
         onSubmit={event=>{
           event.preventDefault()
-          props.handleLogin(email, password)
+          props.props.handleLogin(email, password)
         }}>
           <input ref={email} id="login-email" type="email" name="email" placeholder="Email" />
           <input ref={password} id="login-password" type="password" name="password"  placeholder="Password" />
           <input id="login-submit" type="submit" value="Login" className="btn" />
-          <div style={{color: 'red'}} id="login-user-error"></div>
         </form>
         <Link to="/user/create">Don't have an account yet? <span className="underline">Signup</span></Link>
       </section>

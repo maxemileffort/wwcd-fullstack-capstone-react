@@ -17,11 +17,14 @@ export default function Content(_props){
     console.log(_props)
     return(
         <span>
-            <Route exact path='/' render={(props)=><LandingPage props={props}/>} />
-            <Route path='/dashboard' render={(props)=><Dashboard props={props}/>} />
-            <Route exact path='/user/login' render={(props)=><Login props={props} handleLogin={_props.handleLogin}/>} />
-            <Route exact path='/user/create' render={(props)=><Signup props={props}/>} />
-            <Route exact path='/admin' render={(props)=><Admin props={props}/>} />
+            <Route exact path='/' render={(props)=><LandingPage routerProps={props}/>} />
+            {/* TODO: Make sure user is logged in before going to dashboard */}
+            <Route path='/dashboard' render={(props)=><Dashboard routerProps={props} props={_props}/>} />
+            {/* TODO: Check and see if user is logged in and route to dashboard instead of login */}
+            <Route exact path='/user/login' render={(props)=><Login routerProps={props} props={_props}/>} />
+            <Route exact path='/user/create' render={(props)=><Signup routerProps={props} props={_props}/>} />
+            {/* TODO: Make sure user has rights before letting them access admin */}
+            <Route exact path='/admin' render={(props)=><Admin routerProps={props} props={_props}/>} />
             <Route exact path='/about' component={About} />
             <Route exact path='/contact' component={Contact} />
         </span>

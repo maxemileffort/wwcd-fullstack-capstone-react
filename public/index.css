@@ -29,7 +29,7 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0;
-  height: 800px;
+  height: 400px;
 }
 
 header p, a {
@@ -51,7 +51,7 @@ header p, a {
 }
 
 .tagline{
-	margin-top: 450px;
+	margin-top: 50px;
 }
 
 .link-no-box, .single-tab{
@@ -122,7 +122,7 @@ form{
 }
 
 .hero{
-  max-width: 66%;
+  max-width: 100%;
 }
 
 .story {
@@ -172,7 +172,7 @@ section, footer {
   margin:20px 0;
   color:white;
   font-weight: 100;
-  width: auto;
+  width: 100%;
 }
 
 .dashboard__format{

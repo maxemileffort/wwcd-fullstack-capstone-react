@@ -26,8 +26,8 @@ export default function Admin(props){
                             </div>
                             <div className="projections-tool">
                                 <h4>Projections</h4>
-                                <input type="number" name="season" id="season" placeholder="season" value='2018'/>
-                                <input type="number" name="week" id="week" placeholder="week" value='0'/>
+                                <input type="number" name="season" id="season" placeholder="season"/>
+                                <input type="number" name="week" id="week" placeholder="week"/>
                                 <input type="submit" className="btn admin-submit" value="Populate DB" />
                             </div>
                         </section>
