@@ -64,8 +64,10 @@ class App extends React.Component{
                     error: "Cannot use this email address."
                 })
                 document.querySelector("#create-submit").setAttribute("disabled", "disabled")
+                document.querySelector("#account-update-submit").setAttribute("disabled", "disabled")
             } else {
                 document.querySelector("#create-submit").removeAttribute("disabled")
+                document.querySelector("#account-update-submit").removeAttribute("disabled")
             }
         })
         .catch(error=>{
@@ -158,7 +160,12 @@ class App extends React.Component{
         //       'Content-Type': 'multipart/form-data'
         //     }
         // }).then(response=>{console.log(response)}).catch(err=>{console.log(err)})
-	}
+    }
+    
+    handleAccountUpdate = (updateObj) => {
+        console.log("Updating account")
+        console.log(updateObj)
+    }
 
     render(){
         return(
@@ -166,12 +173,13 @@ class App extends React.Component{
                 <Header isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout}/>
                 <div style={{color: 'red'}} id="error">{this.state.error}</div>
                 <Content 
-                    props={this.state} 
+                    appState={this.state} 
                     handleLogin={this.handleLogin} 
                     handleSignup={this.handleSignup}
                     checkEmailExists={this.checkEmailExists}
                     sendStatsToDb={this.sendStatsToDb}
                     sendSalariesToDb={this.sendSalariesToDb}
+                    handleAccountUpdate={this.handleAccountUpdate}
                     />
                 <Footer />
             </div>

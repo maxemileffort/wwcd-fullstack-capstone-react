@@ -6,11 +6,11 @@ export default function Admin(props){
     let season = React.createRef();
     let week = React.createRef();
     let file = React.createRef();
-    if (!props.props.loggedIn){
+    if (!props.appState.loggedIn){
         return <Redirect to="/user/login" />
-    } else if (props.props.user.accountType !== "Admin"){
+    } else if (props.appState.user.accountType !== "Admin"){
         return <Redirect to="/dashboard" />
-    } else if (props.props.user.accountType === "Admin"){
+    } else if (props.appState.user.accountType === "Admin"){
         return (
             <div>
                 <h2>Admin Page</h2>
@@ -23,7 +23,7 @@ export default function Admin(props){
                             event.preventDefault();
                             props.sendStatsToDb(season.current.value, week.current.value)
                             console.log(file)
-                            // props.props.sendSalariesToDb(file)
+                            // props.sendSalariesToDb(file)
                         }}>
                         <p>Download <Link className="link-no-box" to="https://www.draftkings.com/lineup/upload" target="_blank">Salaries</Link></p>
                         <section>

@@ -1,16 +1,5 @@
 import React, { Component } from 'react'
-// import { Link } from "react-router-dom";
 import axios from 'axios';
-
-// // user is switching between tabs in the dashboard
-// $('.single-tab').on('click', function(e){
-//     e.preventDefault();
-//     $('.single-tab').removeClass('active');
-//     let query = e.currentTarget.className.split(' ').pop();
-//     $(`a.${query}`).addClass('active');
-//     $(`div.top-5`).addClass('hidden');
-//     $(`div.${query}`).removeClass('hidden');
-// })
 
 export default class Rundown extends Component{
 	constructor(props){
@@ -26,7 +15,7 @@ export default class Rundown extends Component{
 	}
 
 	// watches all the selects and passes payload when they are all chosen
-	handleSelects = () => {
+	handleSelects = () => { //this method has the bug
 		let season = this.state.season;
 		let week = this.state.week;
 		let position = this.state.position;

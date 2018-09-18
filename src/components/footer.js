@@ -2,7 +2,6 @@ import React from 'react'
 
 export default function Footer(){
     return (
-        
         <footer role="contentinfo">
           <nav className="flex-nav-footer">
             <h4>Check us out and give us a follow:</h4>

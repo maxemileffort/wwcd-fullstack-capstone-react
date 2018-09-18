@@ -8,11 +8,11 @@ export default function Dashboard(props){
 	console.log(props)
 	// check to see if user, who is trying to go to dashboard,
 	// 	is logged in. if not, redirect to login page
-	if (props.props.loggedIn){
+	if (props.appState.loggedIn){
 		return (
 		<Fragment>
 			<Rundown />
-			<Account /> 
+			<Account {...props}/> 
 		</Fragment>
 		)
 	} else {

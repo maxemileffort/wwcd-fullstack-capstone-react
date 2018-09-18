@@ -7,7 +7,7 @@ export default function Login(props){
   let password = React.createRef()
     return (
       <section>
-        {props.props.loggedIn ? (
+        {props.appState.loggedIn ? (
           <Fragment>
             <Redirect to="/dashboard"/>
           </Fragment>

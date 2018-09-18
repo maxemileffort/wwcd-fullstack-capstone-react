@@ -7,14 +7,22 @@ import { Link } from "react-router-dom";
 //   $('.flex-nav ul').toggleClass('open');
 // });
 
-
-
-
 export default function Navbar(props){
   console.log(props)
   return (
   <nav className="flex-nav">
-    <Link to="#" className="toggleNav"><i className="fas fa-bars"></i> Menu</Link>
+    <Link to="#" className="toggleNav" 
+    	onClick={event=>{
+        event.preventDefault()
+        if(!document.querySelector('.flex-nav ul').classList.contains('open')){
+          document.querySelector('.flex-nav ul').classList.add('open')
+        } else if(document.querySelector('.flex-nav ul').classList.contains('open')){
+					document.querySelector('.flex-nav ul').classList.remove('open')
+        }
+      }
+    }>
+      <i className="fas fa-bars"></i> Menu
+    </Link>
     <ul>
       <li><Link to="/">Home</Link></li>
       {/* check to see if user is logged in and render logout/login accordingly */}
