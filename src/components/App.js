@@ -59,21 +59,25 @@ class App extends React.Component{
         axios.get(url)
         .then(response=>{
             console.log(response)
-            if (response.data.entries.length !== 0){
+            if (response.data.entries.length > 0){
                 this.setState({
                     error: "Cannot use this email address."
                 })
                 document.querySelector("#create-submit").setAttribute("disabled", "disabled")
                 document.querySelector("#account-update-submit").setAttribute("disabled", "disabled")
             } else {
-                document.querySelector("#create-submit").removeAttribute("disabled")
-                document.querySelector("#account-update-submit").removeAttribute("disabled")
+                if (document.querySelector("#create-submit") && document.querySelector("#create-submit").hasAttribute('disabled')){
+                    document.querySelector("#create-submit").removeAttribute("disabled")
+                }
+                if (document.querySelector("#account-update-submit") && document.querySelector("#account-update-submit").hasAttribute('disabled')){
+                    document.querySelector("#account-update-submit").removeAttribute("disabled")
+                }
             }
         })
         .catch(error=>{
             console.log(error)
             this.setState({
-                error: "Cannot use this email address."
+                error: "Something went wrong. Please try again later."
             })
         })
     }
@@ -165,6 +169,17 @@ class App extends React.Component{
     handleAccountUpdate = (updateObj) => {
         console.log("Updating account")
         console.log(updateObj)
+        let url = 'https://dfs-analytics-react-capstone.herokuapp.com/user/update'
+        axios.put(url, updateObj)
+        .then(response=>{
+            console.log(response)
+        })
+        .catch(error=>{
+            console.log(error)
+            this.setState({
+                error: "Something went wrong. Please try again later."
+            })
+        })
     }
 
     render(){

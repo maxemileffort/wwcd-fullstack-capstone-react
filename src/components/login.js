@@ -22,8 +22,8 @@ export default function Login(props){
                 event.preventDefault();
                 props.handleLogin(email, password);
             }}>
-              <input ref={email} id="login-email" type="email" name="email" placeholder="Email" value="abc@abc.com"/>
-              <input ref={password} id="login-password" type="password" name="password"  placeholder="Password" value="123"/>
+              <input ref={email} id="login-email" type="email" name="email" placeholder="Email" defaultValue="abc@abc.com"/>
+              <input ref={password} id="login-password" type="password" name="password"  placeholder="Password" defaultValue="123"/>
               <input id="login-submit" type="submit" value="Login" className="btn" />
             </form>
             <Link to="/user/create">Don't have an account yet? <span className="underline">Signup</span></Link>

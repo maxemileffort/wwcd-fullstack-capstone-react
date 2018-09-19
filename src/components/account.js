@@ -20,11 +20,12 @@ export default function Account(props){
             	onSubmit={event=>{
                     event.preventDefault();
                     let updateObj = {
-                        accountCurrentEmail, 
-                        accountNewEmail, 
-                        accountCurrentPassword, 
-                        accountNewPassword1, 
-                        accountNewPassword2
+                        accountCurrentEmail: accountCurrentEmail.current.value, 
+                        accountNewEmail: accountNewEmail.current.value, 
+                        accountCurrentPassword: accountCurrentPassword.current.value, 
+                        accountNewPassword1: accountNewPassword1.current.value, 
+                        accountNewPassword2: accountNewPassword2.current.value,
+                        accountType: props.appState.user.accountType
                     };
                     props.handleAccountUpdate(updateObj)
                 }}>

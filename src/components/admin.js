@@ -25,7 +25,7 @@ export default function Admin(props){
                             console.log(file)
                             // props.sendSalariesToDb(file)
                         }}>
-                        <p>Download <Link className="link-no-box" to="https://www.draftkings.com/lineup/upload" target="_blank">Salaries</Link></p>
+                        <p>Download <a className="a-no-box" href="https://www.draftkings.com/lineup/upload" target="_blank" rel="noopener noreferrer">Salaries</a></p>
                         <section>
                             <div className="file-chooser">
                                 <h4>Upload Salaries Here</h4>
