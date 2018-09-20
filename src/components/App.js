@@ -20,8 +20,11 @@ class App extends React.Component{
     handleLogin = (email, password)=>{
         console.log('Trying to login.')
         let _email = email.current.value;
-        let _password = password.current.value
-        axios.post('https://dfs-analytics-react-capstone.herokuapp.com/user/login/', {
+        let _password = password.current.value;
+
+        let url = '/user/login/'
+
+        axios.post(url, {
             email: _email,
             password: _password
           })
@@ -54,7 +57,7 @@ class App extends React.Component{
             error: null
         })
 
-        let url = `https://dfs-analytics-react-capstone.herokuapp.com/check-duplicate-email/${inputEmail}`
+        let url = `/check-duplicate-email/${inputEmail}`
         
         axios.get(url)
         .then(response=>{
@@ -63,8 +66,12 @@ class App extends React.Component{
                 this.setState({
                     error: "Cannot use this email address."
                 })
-                document.querySelector("#create-submit").setAttribute("disabled", "disabled")
-                document.querySelector("#account-update-submit").setAttribute("disabled", "disabled")
+                if (document.querySelector("#create-submit")){
+                    document.querySelector("#create-submit").setAttribute("disabled", "disabled")
+                }
+                if (document.querySelector("#account-update-submit")){
+                    document.querySelector("#account-update-submit").setAttribute("disabled", "disabled")
+                }
             } else {
                 if (document.querySelector("#create-submit") && document.querySelector("#create-submit").hasAttribute('disabled')){
                     document.querySelector("#create-submit").removeAttribute("disabled")
@@ -103,7 +110,9 @@ class App extends React.Component{
             })
             return false;
         } else {
-            axios.post('https://dfs-analytics-react-capstone.herokuapp.com/user/create/', {
+            let url = '/user/create/'
+
+            axios.post(url, {
             email: _email,
             username: _username,
             password: _password1
@@ -141,7 +150,7 @@ class App extends React.Component{
 			week
         };
         
-        let url = 'https://dfs-analytics-react-capstone.herokuapp.com/send-stats-to-db'
+        let url = '/send-stats-to-db'
         
         axios.post(url, period)
         .then(response=>{
@@ -153,7 +162,7 @@ class App extends React.Component{
     }
     
     sendSalariesToDb = (file) => {
-        let url = 'https://dfs-analytics-react-capstone.herokuapp.com/send-salaries-to-db/';
+        let url = '/send-salaries-to-db/';
 
         // stackoverlow solution with axios
         // var formData = new FormData();
@@ -169,7 +178,9 @@ class App extends React.Component{
     handleAccountUpdate = (updateObj) => {
         console.log("Updating account")
         console.log(updateObj)
-        let url = 'https://dfs-analytics-react-capstone.herokuapp.com/user/update'
+
+        let url = '/user/update'
+
         axios.put(url, updateObj)
         .then(response=>{
             console.log(response)
@@ -204,3 +215,9 @@ class App extends React.Component{
 }
 
 export default withRouter(App)
+
+// for package.json
+// dev proxy: 
+// "proxy": "http://localhost:8080"
+// prod proxy:
+// "proxy": "https://dfs-analytics-react-capstone.herokuapp.com/"
