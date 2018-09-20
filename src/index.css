@@ -63,6 +63,7 @@ header p, a {
   color: lightgreen;
 }
 
+
 .single-tab{
   border: 1px white solid;
   padding: 3px;
@@ -79,6 +80,15 @@ header p, a {
 a:hover {
   background:rgba(0,0,0,0.3);
   color: crimson;
+}
+
+
+.no-hover-effect{
+  margin: 0 10px;
+}
+
+.no-hover-effect:hover{
+  background: none;
 }
 
 a.player-report {
@@ -154,13 +164,31 @@ form{
   margin: 0 auto;
 }
 
-input {
+input{
   padding:10px;
-  margin: 5px 0;
+  margin: 5px auto;
   border:0;
   border-radius: 5px;
-  width: 30%;
+  width: 45%;
   min-width: 150px;
+}
+
+input[type=file]{
+  margin-left: 25%;
+}
+
+input[type=checkbox]{
+  padding:0;
+  margin: 0;
+  border:0;
+  width: 1%;
+  min-width: 1px;
+  border-radius: 5px;
+}
+
+.projections-tool{
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {

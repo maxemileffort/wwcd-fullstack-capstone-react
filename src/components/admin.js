@@ -15,17 +15,15 @@ export default function Admin(props){
             <div>
                 <h2>Admin Page</h2>
                 <main className="main--unflex">
-                    <form 
-                        action="#" 
-                        method="post" 
-                        id="db-update" 
+                    <form action="#" method="post" id="db-update" 
                         onSubmit={event=>{
                             event.preventDefault();
                             props.sendStatsToDb(season.current.value, week.current.value)
-                            console.log(file)
-                            // props.sendSalariesToDb(file)
+                            let formData = new FormData();
+                            formData.append('salaries', file.current.files[0])
+                            props.sendSalariesToDb(formData)
                         }}>
-                        <p>Download <a className="a-no-box" href="https://www.draftkings.com/lineup/upload" target="_blank" rel="noopener noreferrer">Salaries</a></p>
+                        <p>Download <a className="link-no-box" href="https://www.draftkings.com/lineup/upload" target="_blank" rel="noopener noreferrer">Salaries</a></p>
                         <section>
                             <div className="file-chooser">
                                 <h4>Upload Salaries Here</h4>

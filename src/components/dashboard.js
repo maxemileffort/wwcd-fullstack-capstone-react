@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
-import Account from './account'
 import Rundown from './rundown'
 
 export default function Dashboard(props){
@@ -12,7 +11,7 @@ export default function Dashboard(props){
 		return (
 		<Fragment>
 			<Rundown />
-			<Account {...props}/> 
+			<Link to="/account">Account</Link>
 		</Fragment>
 		)
 	} else {

@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import axios from 'axios';
   
 import Header from './header'
+import Messages from './messages'
 import Content from './content'
 import Footer from './footer'
 
@@ -13,7 +14,9 @@ class App extends React.Component{
         this.state = {
             loggedIn: false,
             user: null,
-            error: null
+            error: null,
+            salaryMsg: null,
+            statsMsg: null
         }
     }
 
@@ -27,25 +30,36 @@ class App extends React.Component{
         axios.post(url, {
             email: _email,
             password: _password
-          })
-          .then((response)=>{
-            this.setState({
-                loggedIn: true,
-                user: response.data.user,
-                error: null
-            })
-            if(this.state.user.accountType === 'Admin'){
-                // if user that logs in is Admin, route to admin page
-                this.props.history.push("/admin")
-            } else {
-                // otherwise, take user to dashboard
-                this.props.history.push("/dashboard")
+        })
+        .then((response)=>{
+            if (response.data.user){
+                this.setState({
+                    loggedIn: true,
+                    user: response.data.user,
+                    error: null,
+                    salaryMsg: null,
+                    statsMsg: null
+                })
+                if(this.state.user.accountType === 'Admin'){
+                    // if user that logs in is Admin, route to admin page
+                    this.props.history.push("/admin")
+                } else if (this.state.user.accountType === 'Free' || this.state.user.accountType === 'Pro'){
+                    // if they are a member but not admin, take user to dashboard
+                    this.props.history.push("/dashboard")
+                }
+            }
+             else {
+                //otherwise, refresh login page
+                this.setState({
+                    error: "Authentication failed."
+                })
+                this.props.history.push("/user/login")
             }
         })
         .catch((error)=>{
             console.log(error);
             this.setState({
-                error: "Auth failed."
+                error: "Something went wrong logging you in."
             })
             this.props.history.push("/user/login")
           });
@@ -123,8 +137,7 @@ class App extends React.Component{
                 user: response.data.user,
                 error: null
             })
-            // route to dashboard after successfully creating user
-            this.props.history.push("/dashboard")
+            this.props.history.push("/")
         })
         .catch((error)=>{
             console.log(error);
@@ -140,7 +153,9 @@ class App extends React.Component{
         this.setState({
             loggedIn: false,
             user: null,
-            error: null
+            error: null,
+            salaryMsg: null,
+            statsMsg: null
         })
     }
 
@@ -155,24 +170,32 @@ class App extends React.Component{
         axios.post(url, period)
         .then(response=>{
             console.log(response)
+            this.setState({
+                statsMsg: response.data.msg
+            })
         })
         .catch(err=>{
             console.log(err)
         })
     }
     
-    sendSalariesToDb = (file) => {
+    sendSalariesToDb = (formData) => {
         let url = '/send-salaries-to-db/';
-
-        // stackoverlow solution with axios
-        // var formData = new FormData();
-        // var imagefile = document.querySelector('#file');
-        // formData.append("image", imagefile.files[0]);
-        // axios.post(url, file, {
-        //     headers: {
-        //       'Content-Type': 'multipart/form-data'
-        //     }
-        // }).then(response=>{console.log(response)}).catch(err=>{console.log(err)})
+        
+        axios.post(url, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(response=>{
+            console.log(response)
+            this.setState({
+                salaryMsg: response.data.msg
+            })
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
     
     handleAccountUpdate = (updateObj) => {
@@ -193,11 +216,38 @@ class App extends React.Component{
         })
     }
 
+    handleAccountDelete = () => {
+        console.log("Deleting account")
+        let email = this.state.user.email
+        console.log(email)
+
+        let url = '/user/delete/'+email
+
+        axios.delete(url)
+        .then(response=>{
+            console.log(response)
+            this.props.history.push("/")
+            this.setState({
+                loggedIn: false,
+                user: null,
+                error: null,
+                salaryMsg: null,
+                statsMsg: null
+            })
+        })
+        .catch(error=>{
+            console.log(error)
+            this.setState({
+                error: "Something went wrong. Please try again later."
+            })
+        })
+    }
+
     render(){
         return(
             <div className="wrapper">
                 <Header isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout}/>
-                <div style={{color: 'red'}} id="error">{this.state.error}</div>
+                <Messages appState={this.state}/>
                 <Content 
                     appState={this.state} 
                     handleLogin={this.handleLogin} 
@@ -206,6 +256,8 @@ class App extends React.Component{
                     sendStatsToDb={this.sendStatsToDb}
                     sendSalariesToDb={this.sendSalariesToDb}
                     handleAccountUpdate={this.handleAccountUpdate}
+                    handleAccountDelete={this.handleAccountDelete}
+                    resetMsgs={this.resetMsgs}
                     />
                 <Footer />
             </div>

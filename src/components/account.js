@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 export default function Account(props){
     console.log(props)
@@ -8,15 +9,20 @@ export default function Account(props){
     let accountNewPassword1 = React.createRef();
     let accountNewPassword2 = React.createRef();
     let newsletter = React.createRef();
+
+
     return(
         <section>
             <h2>Account</h2>
             <label htmlFor="account-username">Username:</label>
             <p>{props.appState.user.username || "Error detecting username."}</p>
-			<input ref={newsletter} type="checkbox" id="account-news-opt-in" defaultChecked="true"/>
-            <label htmlFor="account-news-opt-in"> Opt in for newsletter</label>
-            <br />
-            <label htmlFor="account-email-password-change">Change password and or email</label>
+            <p>
+                <input ref={newsletter} type="checkbox" id="account-news-opt-in" defaultChecked="true"/>
+                <label htmlFor="account-news-opt-in"> Opt in for newsletter</label>
+            </p>
+            <p>
+                <label htmlFor="account-email-password-change">Change password and or email</label>
+            </p>
             <form id="account-email-password-change" method="post" 
             	onSubmit={event=>{
                     event.preventDefault();
@@ -40,8 +46,16 @@ export default function Account(props){
             	<input ref={accountCurrentPassword} type="password" id="account-current-password" placeholder="Current Password" defaultValue="123"/>
             	<input ref={accountNewPassword1} type="password" id="account-new-password1" placeholder="New Password" defaultValue="456"/>
             	<input ref={accountNewPassword2} type="password" id="account-new-password2" placeholder="Confirm Password Change" defaultValue="456"/>
-                <input type="submit" id="account-update-submit" className="btn" value="Update Account" />
+                <div>
+                    <input type="submit" id="account-update-submit" className="btn" value="Update Account" />
+                    <a href='#' className="link-no-box no-hover-effect" 
+                        onClick={event=>{
+                            props.handleAccountDelete();
+                        }
+                    }>Delete Account</a>
+                </div>
             </form>
+            <Link to="/dashboard">Dashboard</Link>
 		</section>
     )
 }
