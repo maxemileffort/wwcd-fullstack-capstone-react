@@ -2,13 +2,26 @@ import React, { Fragment } from 'react';
 
 
 export default function Messages(props){
-
-
+    let unread = "unread"
+    let all = "all"
+    
     return(
         <Fragment >
-            <div style={{color: 'red'}} id="error">{props.appState.error}</div>
-            <div style={{color: 'green'}} id="statsMsg">{props.appState.statsMsg}</div>
-            <div style={{color: 'green'}} id="salaryMsg">{props.appState.salaryMsg}</div>
+            <div id="unread-messages">
+            </div>
+            <button className="btn"
+                onClick={()=>{
+                    props.getMessages(unread)
+                }}
+            >Load Unread Messages</button>
+            <div id="all-messages">
+            <hr />
+            </div>
+            <button className="btn"
+                onClick={()=>{
+                    props.getMessages(all)
+                }}
+            >Load All Messages</button>
         </Fragment>
     )
 }

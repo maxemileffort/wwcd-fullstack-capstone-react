@@ -9,8 +9,6 @@ export default function Account(props){
     let accountNewPassword1 = React.createRef();
     let accountNewPassword2 = React.createRef();
     let newsletter = React.createRef();
-
-
     return(
         <section>
             <h2>Account</h2>

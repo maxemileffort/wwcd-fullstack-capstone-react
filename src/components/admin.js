@@ -39,6 +39,7 @@ export default function Admin(props){
                     </form>
                 <div className="results"></div>
                 <Link to="/dashboard">Dashboard</Link>
+                <Link to="/messages">Messages</Link>
                 </main>
             </div>
             )

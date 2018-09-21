@@ -164,13 +164,17 @@ form{
   margin: 0 auto;
 }
 
-input{
+input, textarea{
   padding:10px;
   margin: 5px auto;
   border:0;
   border-radius: 5px;
   width: 45%;
   min-width: 150px;
+}
+
+textarea{
+  height: 200px;;
 }
 
 input[type=file]{
