@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Cta from './cta';
+import Cta from '../misc/cta';
 
 export default function Contact(props){
     let username = React.createRef();   

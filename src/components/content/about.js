@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Cta from './cta';
+import Cta from '../misc/cta';
 
 export default function About (){
     return (

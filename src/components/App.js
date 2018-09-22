@@ -2,10 +2,10 @@ import React from 'react';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
   
-import Header from './header'
-import Errors from './errors'
-import Content from './content'
-import Footer from './footer'
+import Header from './header/header'
+import Errors from './misc/errors'
+import Content from './content/content'
+import Footer from './misc/footer'
 
 class App extends React.Component{ 
     
