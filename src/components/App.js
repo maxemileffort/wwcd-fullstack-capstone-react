@@ -19,117 +19,12 @@ class App extends React.Component{
         }
     }
 
-    deleteMessages = (id) => {
-        let url = "/message-delete"+id
-        axios.delete(url)
-        .then(response=>{
-            console.log(response)
-            this.setState({
-                confirmation: response.data.message
-            })
-            
-             
-        })
-        .catch(error=>{
-            console.log(error)
-            this.setState({
-                error: "Something went wrong. Please try again later."
-            })
-        })
-    }
-
-    markMessageRead = (id) => {
-        console.log(id)
-        let url = `/message/mark-read/${id}`
-        axios.put(url, {})
-        .then(response=>{
-            console.log(response)
-        })
-        .catch(error=>{
-            console.log(error)
-            this.setState({
-                error: "Something went wrong. Please try again later."
-            })
-        })
-    }
-
-    postMessages = (obj) => {
-        let url = "/send-message"
-        axios.post(url, obj)
-        .then(response=>{
-            console.log(response)
-            this.setState({
-                confirmation: response.data.message
-            }) 
-        })
-        .catch(error=>{
-            console.log(error)
-            this.setState({
-                error: "Something went wrong. Please try again later."
-            })
-        })
-    }
-
-    getMessages = (str) => {
-        let url = '/get-messages'
-        axios.get(url)
-        .then(response=>{
-            console.log(response) 
-            if (str === "unread"){
-                let unread = response.data.filter(item=>{return item.read === false});
-                
-                let output = "<ul>";
-                unread.forEach(el=>{
-                    let fx = `{()=>{
-                        props.markMessageRead(${el._id})
-                    }
-                    }`
-                    output += `<li><p>Userame: ${el.username}</p>
-                    <p>Email: ${el.email}</p>
-                    <p>Time: ${el.timeStamp}</p>
-                    <p>Message: ${el.message}</p>
-                    <Button className="btn" 
-                    onClick=${fx}>Mark Read</button></li>
-                    <hr>`;
-                })
-                output += "</ul>"
-                document.querySelector('#unread-messages').innerHTML = output;
-            } else if (str === "all"){
-                let msgs = response.data;
-                let output = "<ul>";
-                msgs.forEach(el=>{
-                    let fx = `{()=>{
-                        event.preventDefault();
-                        props.deleteMessages(${el._id})
-                    }`
-                    output += `<li><p>Userame: ${el.username}</p>
-                    <p>Email: ${el.email}</p>
-                    <p>Time: ${el.timeStamp}</p>
-                    <p>Message: ${el.message}</p>
-                    <button className="btn" onClick=${fx}
-                    >Delete</button></li>
-                    <hr />`;
-                })
-                output += "</ul>"
-                document.querySelector('#all-messages').innerHTML = output;
-            } else {
-                return false
-            }
-        })
-        .catch(error=>{
-            console.log(error)
-            this.setState({
-                error: "Something went wrong. Please try again later."
-            })
-        })
-    }
-
     handleLogin = (email, password)=>{
         console.log('Trying to login.')
         let _email = email.current.value;
         let _password = password.current.value;
 
-        let url = '/user/login/'
+        let url = '/auth/user/login/'
 
         axios.post(url, {
             email: _email,
@@ -143,6 +38,7 @@ class App extends React.Component{
                     error: null,
                     confirmation: null
                 })
+                window.localStorage.setItem('token', response.data.token)
                 if(this.state.user.accountType === 'Admin'){
                     // if user that logs in is Admin, route to admin page
                     this.props.history.push("/admin")
@@ -304,7 +200,7 @@ class App extends React.Component{
         console.log("Updating account")
         console.log(updateObj)
 
-        let url = '/user/update'
+        let url = '/auth/user/update'
 
         axios.put(url, updateObj)
         .then(response=>{
@@ -323,7 +219,7 @@ class App extends React.Component{
         let email = this.state.user.email
         console.log(email)
 
-        let url = '/user/delete/'+email
+        let url = '/auth/user/delete/'+email
 
         axios.delete(url)
         .then(response=>{
