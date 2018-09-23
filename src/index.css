@@ -110,6 +110,12 @@ a.player-report {
   color: crimson;
 }
 
+#error, #confirmation{
+  width: 100%;
+  text-align: center;
+  margin: 10px auto;
+}
+
 main {
   display: flex;
 }

@@ -23,45 +23,53 @@ class App extends React.Component{
         console.log('Trying to login.')
         let _email = email.current.value;
         let _password = password.current.value;
+        console.log(_email)
+        console.log(_password)
+        
+        if (!_email || !_password){
+            return this.setState({
+                error: "Please enter a valid email and password combination."
+            })
+        } else {
+            let url = '/user/login'
 
-        let url = '/auth/user/login/'
-
-        axios.post(url, {
-            email: _email,
-            password: _password
-        })
-        .then((response)=>{
-            if (response.data.user){
-                this.setState({
-                    loggedIn: true,
-                    user: response.data.user,
-                    error: null,
-                    confirmation: null
-                })
-                window.localStorage.setItem('token', response.data.token)
-                if(this.state.user.accountType === 'Admin'){
-                    // if user that logs in is Admin, route to admin page
-                    this.props.history.push("/admin")
-                } else if (this.state.user.accountType === 'Free' || this.state.user.accountType === 'Pro'){
-                    // if they are a member but not admin, take user to dashboard
-                    this.props.history.push("/dashboard")
+            axios.post(url, {
+                email: _email,
+                password: _password
+            })
+            .then((response)=>{
+                if (response.data.user){
+                    this.setState({
+                        loggedIn: true,
+                        user: response.data.user,
+                        error: null,
+                        confirmation: null
+                    })
+                    window.localStorage.setItem('token', response.data.token)
+                    if(this.state.user.accountType === 'Admin'){
+                        // if user that logs in is Admin, route to admin page
+                        this.props.history.push("/admin")
+                    } else if (this.state.user.accountType === 'Free' || this.state.user.accountType === 'Pro'){
+                        // if they are a member but not admin, take user to dashboard
+                        this.props.history.push("/dashboard")
+                    }
                 }
-            }
-             else {
-                //otherwise, refresh login page
+                else {
+                    //otherwise, rerender login page
+                    this.setState({
+                        error: "Authentication failed."
+                    })
+                    this.props.history.push("/user/login")
+                }
+            })
+            .catch((error)=>{
+                console.log(error);
                 this.setState({
-                    error: "Authentication failed."
+                    error: "Something went wrong logging you in."
                 })
                 this.props.history.push("/user/login")
-            }
-        })
-        .catch((error)=>{
-            console.log(error);
-            this.setState({
-                error: "Something went wrong logging you in."
-            })
-            this.props.history.push("/user/login")
-          });
+            });
+        }
     }
 
     checkEmailExists = (inputEmail) => {
