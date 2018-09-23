@@ -19,14 +19,29 @@ class App extends React.Component{
         }
     }
 
+    sendMessage = (msgObj) => {
+        console.log(msgObj);
+
+        let url = '/message/send/'
+
+        axios.post(url, msgObj)
+        .then(response=>{
+            console.log(response.data.message)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+
     handleLogin = (email, password)=>{
         console.log('Trying to login.')
-        let _email = email.current.value;
-        let _password = password.current.value;
-        console.log(_email)
-        console.log(_password)
         
-        if (!_email || !_password){
+        // let _email = email.current.value;
+        // let _password = password.current.value;
+        // console.log(_email)
+        // console.log(_password)
+        
+        if (!email || !password){
             return this.setState({
                 error: "Please enter a valid email and password combination."
             })
@@ -34,8 +49,8 @@ class App extends React.Component{
             let url = '/user/login'
 
             axios.post(url, {
-                email: _email,
-                password: _password
+                email,
+                password
             })
             .then((response)=>{
                 if (response.data.user){
@@ -45,7 +60,7 @@ class App extends React.Component{
                         error: null,
                         confirmation: null
                     })
-                    window.localStorage.setItem('token', response.data.token)
+                    window.localStorage.setItem('wwcdfstoken', response.data.token)
                     if(this.state.user.accountType === 'Admin'){
                         // if user that logs in is Admin, route to admin page
                         this.props.history.push("/admin")
@@ -163,6 +178,7 @@ class App extends React.Component{
             error: null,
             confirmation: null
         })
+        window.localStorage.removeItem('wwcdfstoken');
     }
 
     sendStatsToDb = (season, week) => {
@@ -260,10 +276,7 @@ class App extends React.Component{
                     sendSalariesToDb={this.sendSalariesToDb}
                     handleAccountUpdate={this.handleAccountUpdate}
                     handleAccountDelete={this.handleAccountDelete}
-                    getMessages={this.getMessages}
-                    postMessages={this.postMessages}
-                    deleteMessages={this.deleteMessages}
-                    markMessageRead={this.markMessageRead}
+                    sendMessage={this.sendMessage}
                     />
                 <Footer />
             </div>

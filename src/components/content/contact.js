@@ -20,7 +20,7 @@ export default function Contact(props){
                         email: email.current.value,
                         message: message.current.value
                     }
-                    props.postMessages(msgObj)
+                    props.sendMessage(msgObj)
                 }
             }>
                 <input ref={username} type="text" id="contact-username" placeholder="Username" />

@@ -22,7 +22,7 @@ export default function Login(props){
                 event.preventDefault();
                 console.log(email)
                 console.log(password)
-                props.handleLogin(email, password);
+                props.handleLogin(email.current.value, password.current.value);
             }}>
               <input ref={email} id="login-email" type="email" name="email" placeholder="Email" defaultValue="abc@abc.com"/>
               <input ref={password} id="login-password" type="password" name="password"  placeholder="Password" defaultValue="123"/>
