@@ -53,6 +53,7 @@ class App extends React.Component{
                 password
             })
             .then((response)=>{
+                // if response has data.user object...
                 if (response.data.user){
                     this.setState({
                         loggedIn: true,
@@ -80,7 +81,7 @@ class App extends React.Component{
             .catch((error)=>{
                 console.log(error);
                 this.setState({
-                    error: "Something went wrong logging you in."
+                    error: "Authentication failed."
                 })
                 this.props.history.push("/user/login")
             });
