@@ -225,7 +225,7 @@ class App extends React.Component{
         console.log("Updating account")
         console.log(updateObj)
 
-        let url = '/auth/user/update'
+        let url = '/user/update'
 
         axios.put(url, updateObj)
         .then(response=>{
