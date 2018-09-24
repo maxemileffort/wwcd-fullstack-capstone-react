@@ -122,6 +122,7 @@ main {
 
 .row{
   display: flex;
+  align-content: center;
 }
 
 .main--unflex{
@@ -179,12 +180,26 @@ input, textarea{
   min-width: 150px;
 }
 
+select{
+  margin: 0 1%;
+  height: 40px;
+  width: 10%;
+  max-width: 150px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
 textarea{
   height: 200px;;
 }
 
 input[type=file]{
   margin-left: 25%;
+}
+
+input[type=submit]{
+  font-weight: 600;
 }
 
 input[type=checkbox]{
@@ -240,6 +255,8 @@ section, footer {
   border-radius: 12px;
   cursor: pointer;
 }
+
+
 
 .news-slider{
   z-index: 4;

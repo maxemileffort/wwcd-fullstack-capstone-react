@@ -45,15 +45,15 @@ export default function Account(props){
             	<input ref={accountNewPassword1} type="password" id="account-new-password1" placeholder="New Password" defaultValue="456"/>
             	<input ref={accountNewPassword2} type="password" id="account-new-password2" placeholder="Confirm Password Change" defaultValue="456"/>
                 <div>
-                    <input type="submit" id="account-update-submit" className="btn" value="Update Account" />
                     <a href='#' className="link-no-box no-hover-effect" 
                         onClick={event=>{
                             props.handleAccountDelete();
                         }
                     }>Delete Account</a>
+                    <input type="submit" id="account-update-submit" className="btn" value="Update Account" />
                 </div>
             </form>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard" style={{marginTop: '15px'}}>Dashboard</Link>
 		</section>
     )
 }

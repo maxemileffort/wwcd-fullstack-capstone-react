@@ -10,7 +10,7 @@ export default function Contact(props){
         <div>
             <h1>Contact</h1>
             <p>
-                Feel free to send me a message. (Currently, I don't read them.)
+                Feel free to send me a message.
             </p>
             <form method="post" 
                 onSubmit={event=>{

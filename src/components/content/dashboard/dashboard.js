@@ -10,8 +10,11 @@ export default function Dashboard(props){
 	if (props.appState.loggedIn){
 		return (
 		<Fragment>
+			<div className="row">
+				<h2>Dashboard</h2>
+				<Link to="/account" className="link-no-box no-hover-effect" style={{margin: 'auto 10px'}}>Account</Link>	
+			</div>
 			<Rundown />
-			<Link to="/account">Account</Link>
 		</Fragment>
 		)
 	} else {

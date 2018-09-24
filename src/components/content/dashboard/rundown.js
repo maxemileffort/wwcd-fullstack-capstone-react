@@ -25,8 +25,6 @@ export default class Rundown extends Component{
 		} else {
 			season = Number(season);
 			week = Number(week);
-			position = position.toString();
-			avg = avg.toString();
 			//functions run in sequence as callbacks, starting with this one:
 			this.getProjections(season, week);
 		}
@@ -35,7 +33,7 @@ export default class Rundown extends Component{
 	// user is switching between tabs in the dashboard
 	handleTabSwitch = (event) => {
 		event.preventDefault();
-		event.persist();
+		event.persist(); // for debugging
 		for(let i = 1; i <= 5; i++){
 			document.querySelector(`.st${i}`).classList.remove('active')
 		}
@@ -320,36 +318,21 @@ export default class Rundown extends Component{
 	render(){
 		return(
 			<div className="dashboard__format">
-				<h2>Dashboard</h2>
 				<div className="test">
 				<section className="lineup">
 					<label htmlFor="dashboard-season-select">Season:</label>
-					<select 
-						name="dashboard-season-select" 
-						className="dashboard-select" 
-						id="dashboard-season-select"
-						value={this.state.season}
+					<select name="dashboard-season-select" className="dashboard-select" id="dashboard-season-select"
 						onChange={(event)=>{
 							this.setState({season: event.target.value});
-							console.log(this.state);
-							this.handleSelects();
-							console.log(this.state);
 						}}
 					>
 						<option value="select">Select</option>
 						<option value="2018">2018</option>
 					</select>
 					<label htmlFor="dashboard-week-select">Week:</label>
-					<select 
-						name="dashboard-week-select" 
-						className="dashboard-select" 
-						id="dashboard-week-select"
-						value={this.state.week}
+					<select name="dashboard-week-select" className="dashboard-select" id="dashboard-week-select"
 						onChange={(event)=>{
 							this.setState({week: event.target.value});
-							console.log(this.state);
-							this.handleSelects();
-							console.log(this.state);
 						}}
 					>
 						<option value="select">Select</option>
@@ -360,16 +343,9 @@ export default class Rundown extends Component{
 						<option value="4">4</option>
 					</select>
 					<label htmlFor="dashboard-position-select">Position:</label>
-					<select 
-						name="dashboard-position-select" 
-						className="dashboard-select" 
-						id="dashboard-position-select"
-						value={this.state.position}
+					<select name="dashboard-position-select" className="dashboard-select" id="dashboard-position-select"
 						onChange={(event)=>{
 							this.setState({position: event.target.value});
-							console.log(this.state);
-							this.handleSelects();
-							console.log(this.state);
 						}}
 					>
 						<option value="select">Select</option>
@@ -381,16 +357,9 @@ export default class Rundown extends Component{
 						<option value="FLEX">FLEX</option>
 					</select>
 					<label htmlFor="dashboard-average-select">Average Type:</label>
-					<select 
-						name="dashboard-average-select" 
-						className="dashboard-select" 
-						id="dashboard-average-select"
-						value={this.state.avg}
+					<select name="dashboard-average-select" className="dashboard-select" id="dashboard-average-select"
 						onChange={(event)=>{
 							this.setState({avg: event.target.value});
-							console.log(this.state);
-							this.handleSelects();
-							console.log(this.state);
 						}}
 					>
 						<option value="select">Select</option>
@@ -398,13 +367,17 @@ export default class Rundown extends Component{
 						<option value="weighted">Weighted</option>
 						<option value="robust">Robust</option>
 					</select>
+					<button className="btn"
+						onClick={()=>{
+							this.handleSelects();
+						}}
+					>Get Players</button>
 					<div id='dashboard-player-list'>
 						<p>Rendered players based on select option and maybe some checkboxes for stats</p>
 					</div>
 				</section>
 				<section className="lineup optimals">
-					<div 
-						className="tabs"
+					<div className="tabs"
 						onClick={(event)=>{
 							this.handleTabSwitch(event);
 						}}
