@@ -7,6 +7,17 @@ import Errors from './misc/errors'
 import Content from './content/content'
 import Footer from './misc/footer'
 
+
+// for axiosConfigs, just uncomment out which one
+// dev baseURL: 
+const baseURL = "http://localhost:8080/"
+// prod proxy:
+// const baseURL = "https://dfs-analytics-react-capstone.herokuapp.com/"
+
+// for use only with axios calls that route to '/auth/' endpoints
+let basicConfig = {baseURL}; 
+let authConfig; // assigned in the login method
+
 class App extends React.Component{ 
     
     constructor(props){
@@ -19,12 +30,25 @@ class App extends React.Component{
         }
     }
 
+    hideErrorsAndConfirmations = ()=>{
+        if (this.state.error){
+                this.setState({
+                    error: null
+                })
+        }
+        if (this.state.confirmation){
+                this.setState({
+                    confirmation: null
+                })
+        }
+    }
+
     sendMessage = (msgObj) => {
         console.log(msgObj);
 
         let url = '/message/send/'
 
-        axios.post(url, msgObj)
+        axios.post(url, msgObj, basicConfig)
         .then(response=>{
             console.log(response.data.message)
         })
@@ -36,22 +60,18 @@ class App extends React.Component{
     handleLogin = (email, password)=>{
         console.log('Trying to login.')
         
-        // let _email = email.current.value;
-        // let _password = password.current.value;
-        // console.log(_email)
-        // console.log(_password)
-        
         if (!email || !password){
             return this.setState({
                 error: "Please enter a valid email and password combination."
             })
         } else {
-            let url = '/user/login'
-
+            let url = '/auth/user/login'
+            
+            // doesn't use the token, so doesn't need the auth config
             axios.post(url, {
                 email,
                 password
-            })
+            }, basicConfig)
             .then((response)=>{
                 // if response has data.user object...
                 if (response.data.user){
@@ -61,7 +81,15 @@ class App extends React.Component{
                         error: null,
                         confirmation: null
                     })
-                    window.localStorage.setItem('wwcdfstoken', response.data.token)
+                    window.localStorage.setItem('wwcddfstoken', response.data.token)
+
+                    authConfig = {
+                        baseURL,
+                        headers: { 
+                            "Authorization": window.localStorage.getItem('wwcddfstoken') || null,
+                        }
+                    }
+
                     if(this.state.user.accountType === 'Admin'){
                         // if user that logs in is Admin, route to admin page
                         this.props.history.push("/admin")
@@ -96,7 +124,7 @@ class App extends React.Component{
 
         let url = `/check-duplicate-email/${inputEmail}`
         
-        axios.get(url)
+        axios.get(url, basicConfig)
         .then(response=>{
             console.log(response)
             if (response.data.entries.length > 0){
@@ -153,14 +181,12 @@ class App extends React.Component{
             email: _email,
             username: _username,
             password: _password1
-        })
+        }, basicConfig)
         .then((response)=>{
             this.setState({
-                loggedIn: true,
-                user: response.data.user,
-                error: null
+                confirmation: `${response.data.message} You will be returned to the home screen in 5 seconds. To activate your account, please login again.`
             })
-            this.props.history.push("/")
+            setTimeout(this.handleLogout, 5000);
         })
         .catch((error)=>{
             console.log(error);
@@ -173,13 +199,14 @@ class App extends React.Component{
     }
 
     handleLogout = () => {
+        this.props.history.push("/");
         this.setState({
             loggedIn: false,
             user: null,
             error: null,
             confirmation: null
         })
-        window.localStorage.removeItem('wwcdfstoken');
+        window.localStorage.removeItem('wwcddfstoken');
     }
 
     sendStatsToDb = (season, week) => {
@@ -190,7 +217,7 @@ class App extends React.Component{
         
         let url = '/send-stats-to-db'
         
-        axios.post(url, period)
+        axios.post(url, period, authConfig)
         .then(response=>{
             console.log(response)
             this.setState({
@@ -204,10 +231,12 @@ class App extends React.Component{
     
     sendSalariesToDb = (formData) => {
         let url = '/send-salaries-to-db/';
-        
+
         axios.post(url, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
+            baseURL, 
+            headers: { 
+                "Authorization": window.localStorage.getItem('wwcddfstoken') || null,
+                'Content-Type': 'multipart/form-data'
             }
         })
         .then(response=>{
@@ -225,11 +254,15 @@ class App extends React.Component{
         console.log("Updating account")
         console.log(updateObj)
 
-        let url = '/user/update'
+        let url = '/auth/user/update'
 
-        axios.put(url, updateObj)
+        axios.put(url, updateObj, authConfig)
         .then(response=>{
             console.log(response)
+            this.setState({
+                confirmation: `${response.data.message}. For your security, you will be logged out. Please login again.`
+            })
+            setTimeout(this.handleLogout, 5000);
         })
         .catch(error=>{
             console.log(error)
@@ -246,14 +279,16 @@ class App extends React.Component{
 
         let url = '/auth/user/delete/'+email
 
-        axios.delete(url)
+        axios.delete(url, authConfig)
         .then(response=>{
-            console.log(response)
+            console.log(response);
+            this.props.history.push('/');
             this.setState({
-                confirmation: response.data.message
+                confirmation: response.data.message,
+                user: null,
+                loggedIn: false
             })
-            this.props.history.push("/")
-            this.handleLogout();
+            window.localStorage.removeItem('wwcddfstoken')
         })
         .catch(error=>{
             console.log(error)
@@ -265,8 +300,8 @@ class App extends React.Component{
 
     render(){
         return(
-            <div className="wrapper">
-                <Header isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout}/>
+            <div className="wrapper" onClick={this.hideErrorsAndConfirmations}>
+                <Header isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout} />
                 <Errors appState={this.state}/>
                 <Content 
                     appState={this.state} 
@@ -277,8 +312,7 @@ class App extends React.Component{
                     sendSalariesToDb={this.sendSalariesToDb}
                     handleAccountUpdate={this.handleAccountUpdate}
                     handleAccountDelete={this.handleAccountDelete}
-                    sendMessage={this.sendMessage}
-                    />
+                    sendMessage={this.sendMessage}/>
                 <Footer />
             </div>
         )
@@ -288,8 +322,3 @@ class App extends React.Component{
 
 export default withRouter(App)
 
-// for package.json
-// dev proxy: 
-// "proxy": "http://localhost:8080"
-// prod proxy:
-// "proxy": "https://dfs-analytics-react-capstone.herokuapp.com/"
