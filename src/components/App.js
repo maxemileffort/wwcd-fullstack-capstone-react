@@ -10,9 +10,9 @@ import Footer from './misc/footer'
 
 // for axiosConfigs, just uncomment out which one
 // dev baseURL: 
-const baseURL = "http://localhost:8080/"
+// const baseURL = "http://localhost:8080/"
 // prod proxy:
-// const baseURL = "https://dfs-analytics-react-capstone.herokuapp.com/"
+const baseURL = "https://dfs-analytics-react-capstone.herokuapp.com/"
 
 // for use only with axios calls that route to '/auth/' endpoints
 let basicConfig = {baseURL}; 
