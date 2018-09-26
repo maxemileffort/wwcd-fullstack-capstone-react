@@ -6,7 +6,7 @@ cache:
 deploy:
   provider: heroku
   api_key:
-    secure: ojg39iwoLBCeHVM5Bryyk4d2h+AjROaJBBkxSCMyANGXzG9iMlekKbOt4n8gSkCtEPsnl9ldIOqO1HsedQ+LsOeUgmlM4Gpzule6ovKX+bppbioaDi5/a/UqGWJfnr7O1lvcGw610xfVta2JkYOVaYoyw7oXlsCmjt1vlDQxKo2IcDWojZPIHImtss5y+JV0yhrKR+hZciErlP0hg8Zvw9kx5UdqirSrva9pWE715BO7/5t1ASKthqeZgkUCoTmVQZ4GOaXo3NwTWNTsHNHVvnTDv8+Dp+pXCPW9W8kQl8hyT9aQg2aZNLAkmomWHCITJbz3B5OOXj6C6hum6DiYUwUT1Zae9hez8a8woVlPGWykuUaQuCSPmyFX+fQVKe5vpqo+FRP6y4YGprs83rVYHYIcEhgoZ4qmTia78itG66RHvRZMe+B5kv8om0uFb++KYi80akNJxFyC9UaUQwtNLoDHxPPO87F2wKZX1GIvVMWn0MdBxQzChPJGe9V4elWnAHC7vdq/wMhkDhxTCIrQUJZnBHIKD0c7Ub4U/wEhDPx49K7RicKm/FivHrdJORnrc0jIoQTVWdxuIA6kISy7/GY55oo6SaamEcYxg631/zroLCvRGV6kQAoHHEywp9xqGlDekIzUezikA3fY+gaTOF7MQGoF34TwKMz8kE7MThs=
+    secure: 91df18b8-1a7f-4c91-bef6-f8280332a40b
   app: wwcd-dfs
   on:
     repo: maxemileffort/wwcd-fullstack-capstone-react
