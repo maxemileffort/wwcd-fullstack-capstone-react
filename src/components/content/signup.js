@@ -35,8 +35,8 @@ export default function Signup(props){
           <p>What you get for joining:</p>
           <ul>
             <li>Free picks, every week!</li>
-            <li>Analysis of last week's top performers</li>
-            <li>Which stats correlate most with high performance</li>
+            <li>Analysis of last week's top performers -- Coming Soon!</li>
+            <li>Which stats correlate most with high performance  -- Coming Soon!</li>
           </ul>
       </section>
       <Link to="/user/login">Already have an account? <span className="underline">Login</span></Link>

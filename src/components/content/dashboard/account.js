@@ -13,7 +13,7 @@ export default function Account(props){
         <section>
             <h2>Account</h2>
             <label htmlFor="account-username">Username:</label>
-            <p>{props.appState.user.username || "Error detecting username."}</p>
+            <p>{props.appState.user.username}</p>
             <p>
                 <input ref={newsletter} type="checkbox" id="account-news-opt-in" defaultChecked="true"/>
                 <label htmlFor="account-news-opt-in"> Opt in for newsletter</label>
