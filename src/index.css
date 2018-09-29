@@ -185,6 +185,7 @@ select{
   height: 40px;
   width: 10%;
   max-width: 150px;
+  min-width: 75px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -228,6 +229,10 @@ section, footer {
   color:white;
   font-weight: 100;
   width: 100%;
+}
+
+.sidebar{
+
 }
 
 .dashboard__format{
@@ -290,50 +295,32 @@ section, footer {
 
 
 @media all and (max-width:1000px) {
-  .story{
-    height: 250px;
-  } 
-  
-  .flex-nav ul {
-    flex-wrap:wrap;
-  }
-
-  .flex-nav li {
-    flex:1 1 50%;
-  }
-
-  .flex-nav .social {
-    flex:1 1 25%;
-  }
-
-}
-  
-  
-/* This is where the magic Happens */
-
-@media all and (max-width:1000px) {
-  
-  .flex-nav li {
-    flex-basis:100%;
-  }
-    
-  /* Turn on flexbox */
   .wrapper {
     display:flex;
     flex-direction:column;
   }
-
+  .story{
+    height: 250px;
+  } 
+  .flex-nav ul {
+    flex-wrap:wrap;
+  }
+  .flex-nav li {
+    flex:1 1 100%;
+  }
+  .flex-nav .social {
+    flex:1 1 25%;
+  }
+}
+  
+@media all and (max-width:1000px) {
   .toggleNav {
     display: block;
   }
-
   .flex-nav ul {
     display: none;
   }
-
   .flex-nav ul.open {
     display:flex;
   }
-  
-   
-  }
+}

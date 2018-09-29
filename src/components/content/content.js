@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route } from "react-router-dom";
 
+import Sidebar from './sidebar/sidebar';
 import LandingPage from './landing-page';
 import Dashboard from './dashboard/dashboard';
 import Account from './dashboard/account';
@@ -14,6 +15,7 @@ export default function Content(_props){
     console.log(_props)
     return(
         <Fragment>
+            <Route path='/' component={Sidebar} />
             <Route exact path='/' render={(props)=><LandingPage routerProps={props}/>} />
             <Route exact path='/about' component={About} />
             <Route exact path='/account' render={(props)=><Account routerProps={props} {..._props}/>} />
