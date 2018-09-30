@@ -211,6 +211,11 @@ input[type=checkbox]{
   min-width: 1px;
   border-radius: 5px;
 }
+.contact-form{
+  width: 100%;
+  height: auto;
+  margin: 1% auto;
+}
 
 .projections-tool{
   display: flex;
@@ -276,6 +281,7 @@ section, footer {
   border: none;
   border-radius: 12px;
   cursor: pointer;
+  margin-bottom: 1%;
 }
 
 .news-slider{
@@ -309,6 +315,20 @@ section, footer {
 }
 
 @media all and (max-width:1000px) {
+  .lineup{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .lineup * {
+    margin: 2% auto;
+  }
+  .tabs, .top-5, #dashboard-player-list{
+    text-align: center;
+  }
+  select{
+    width: 30%;
+  }
   .wrapper {
     display:flex;
     flex-direction:column;
