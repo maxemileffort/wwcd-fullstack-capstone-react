@@ -9,13 +9,13 @@ export default function Dashboard(props){
 	// 	is logged in. if not, redirect to login page
 	if (props.appState.loggedIn){
 		return (
-		<Fragment>
+		<div className="dashboard__format">
 			<div className="row">
 				<h2>Dashboard</h2>
 				<Link to="/account" className="link-no-box no-hover-effect" style={{margin: 'auto 10px'}}>Account</Link>	
 			</div>
 			<Rundown />
-		</Fragment>
+		</div >
 		)
 	} else {
 		return (<Redirect to="/user/login"/>)

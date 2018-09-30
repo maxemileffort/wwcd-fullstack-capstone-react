@@ -4,10 +4,7 @@ export default function AboutHelp(){
     return(
         <div>
             <p>
-                This is the about help section.
-            </p>
-            <p>
-                It tells you help for the about page.
+                This page is really just for the curious. Enjoy!
             </p>
         </div>
     )

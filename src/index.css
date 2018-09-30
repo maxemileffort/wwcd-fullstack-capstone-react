@@ -232,7 +232,24 @@ section, footer {
 }
 
 .sidebar{
+  display: none;
+  border: 1px white solid;
+  border-radius: 10px;
+  background:rgba(0,0,0,1);
+  transition:all 0.5s;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+}
 
+.sidebar-content{
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
 }
 
 .dashboard__format{
@@ -260,8 +277,6 @@ section, footer {
   border-radius: 12px;
   cursor: pointer;
 }
-
-
 
 .news-slider{
   z-index: 4;
@@ -293,7 +308,6 @@ section, footer {
   flex:1;
 }
 
-
 @media all and (max-width:1000px) {
   .wrapper {
     display:flex;
@@ -304,6 +318,7 @@ section, footer {
   } 
   .flex-nav ul {
     flex-wrap:wrap;
+    display: none;
   }
   .flex-nav li {
     flex:1 1 100%;
@@ -311,14 +326,8 @@ section, footer {
   .flex-nav .social {
     flex:1 1 25%;
   }
-}
-  
-@media all and (max-width:1000px) {
   .toggleNav {
     display: block;
-  }
-  .flex-nav ul {
-    display: none;
   }
   .flex-nav ul.open {
     display:flex;

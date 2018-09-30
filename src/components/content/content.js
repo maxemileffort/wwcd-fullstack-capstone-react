@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Route } from "react-router-dom";
 
-import Sidebar from './sidebar/sidebar';
 import LandingPage from './landing-page';
 import Dashboard from './dashboard/dashboard';
 import Account from './dashboard/account';
@@ -14,8 +13,7 @@ import Contact from './contact'
 export default function Content(_props){
     console.log(_props)
     return(
-        <Fragment>
-            <Route path='/' component={Sidebar} />
+        <main>
             <Route exact path='/' render={(props)=><LandingPage routerProps={props}/>} />
             <Route exact path='/about' component={About} />
             <Route exact path='/account' render={(props)=><Account routerProps={props} {..._props}/>} />
@@ -24,6 +22,6 @@ export default function Content(_props){
             <Route exact path='/dashboard' render={(props)=><Dashboard routerProps={props} {..._props}/>} />
             <Route exact path='/user/create' render={(props)=><Signup routerProps={props} {..._props}/>} />
             <Route exact path='/user/login' render={(props)=><Login routerProps={props} {..._props}/>} />
-        </Fragment>
+        </main>
     )
 }

@@ -4,10 +4,13 @@ export default function SignupHelp(){
     return(
         <div>
             <p>
-                This is the Signup help section.
+                Username can be anything, but email should be one you can use to check messages.
             </p>
             <p>
-                It tells you help for the Signup page.
+                Make sure passwords in both fields match.
+            </p>
+            <p>
+                Because this is a beta, all of this information will be reset when the full version is released.
             </p>
         </div>
     )

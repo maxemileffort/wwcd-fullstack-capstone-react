@@ -318,7 +318,6 @@ export default class Rundown extends Component{
 	render(){
 		return(
 			<div className="dashboard__format">
-				<div className="test">
 				<section className="lineup">
 					<label htmlFor="dashboard-season-select">Season:</label>
 					<select name="dashboard-season-select" className="dashboard-select" id="dashboard-season-select"
@@ -404,7 +403,6 @@ export default class Rundown extends Component{
 						<p>Please make a selection</p>
 					</div>
 				</section>
-				</div>
 			</div>
 		)
 	}

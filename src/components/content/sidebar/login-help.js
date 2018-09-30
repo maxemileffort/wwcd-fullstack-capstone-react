@@ -4,10 +4,10 @@ export default function LoginHelp(){
     return(
         <div>
             <p>
-                This is the Login help section.
+                To login, type in your email and password.
             </p>
             <p>
-                It tells you help for the Login page.
+                If you need a reset, hit the Contact button and send me a message.
             </p>
         </div>
     )

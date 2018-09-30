@@ -37,6 +37,14 @@ export default function Navbar(props){
       {/* <li><Link to="#">News</Link></li> feature to be added later*/}
       <li><Link to="/about">About</Link></li>
       <li><Link to="/contact">Contact</Link></li>
+      <li className="sidebar-open"
+          onClick={(event)=>{
+            event.preventDefault();
+            document.querySelector('.sidebar').style.display = "block";
+            document.querySelector('.sidebar').style.width = "100%";
+        }}
+      ><Link to="#"><i className="far fa-question-circle sidebar-open"></i> Help</Link></li>
+      
       <li className="social">
         <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
       </li>

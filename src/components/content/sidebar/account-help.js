@@ -4,10 +4,10 @@ export default function AccountHelp(){
     return(
         <div>
             <p>
-                This is the account help section.
+                This is your account page.
             </p>
             <p>
-                It tells you help for the account page.
+                Here, you can update any of your account information, and if you don't want to be a member any more, you can also delete your account.
             </p>
         </div>
     )

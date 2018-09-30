@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
   
@@ -300,24 +300,25 @@ class App extends React.Component{
 
     render(){
         return(
-            <div className="wrapper" onClick={this.hideErrorsAndConfirmations}>
-                <Header isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout} />
-                <Errors appState={this.state}/>
-                <Content 
-                    appState={this.state} 
-                    handleLogin={this.handleLogin} 
-                    handleSignup={this.handleSignup}
-                    checkEmailExists={this.checkEmailExists}
-                    sendStatsToDb={this.sendStatsToDb}
-                    sendSalariesToDb={this.sendSalariesToDb}
-                    handleAccountUpdate={this.handleAccountUpdate}
-                    handleAccountDelete={this.handleAccountDelete}
-                    sendMessage={this.sendMessage}/>
-                <Footer />
-            </div>
+            <Fragment>
+                <div className="wrapper" onClick={this.hideErrorsAndConfirmations}>
+                    <Header isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout} />
+                    <Errors appState={this.state}/>
+                    <Content 
+                        appState={this.state} 
+                        handleLogin={this.handleLogin} 
+                        handleSignup={this.handleSignup}
+                        checkEmailExists={this.checkEmailExists}
+                        sendStatsToDb={this.sendStatsToDb}
+                        sendSalariesToDb={this.sendSalariesToDb}
+                        handleAccountUpdate={this.handleAccountUpdate}
+                        handleAccountDelete={this.handleAccountDelete}
+                        sendMessage={this.sendMessage}/>
+                    <Footer />
+                </div>
+            </Fragment>
         )
     }
-
 }
 
 export default withRouter(App)

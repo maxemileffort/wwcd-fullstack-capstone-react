@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from "react-router-dom";
   
 export default function LandingPage(){
     return (
-        <main>
+        <Fragment>
             <section>
                 <h2>Sign up for Free</h2>
                 <p>Tired of those rando jabronies beating you in the double-ups in DFS?</p>
@@ -36,7 +36,6 @@ export default function LandingPage(){
             <button className="btn news-down" title="Next story"><i className="fas fa-chevron-down"></i></button>
             </div>
             </section> */}
-        </main>
-        
+        </Fragment>
     )
 }
