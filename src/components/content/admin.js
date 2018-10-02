@@ -14,7 +14,7 @@ export default function Admin(props){
         return (
             <Fragment>
                 <h2>Admin Page</h2>
-                <section>
+                <div>
                     <form action="#" method="post" id="db-update" 
                         onSubmit={event=>{
                             event.preventDefault();
@@ -39,7 +39,7 @@ export default function Admin(props){
                     </form>
                 <div className="results"></div>
                 <Link to="/dashboard">Dashboard</Link>
-                </section>
+                </div>
             </Fragment>
             )
     } else {
