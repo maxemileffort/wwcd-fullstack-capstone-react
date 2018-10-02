@@ -19,36 +19,36 @@ And, also at the time of this writing, it did help me win $130 from a $30 invest
 
 ## Images:
 
-![landing-page](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/landing.PNG)
+![landing-page](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/landing.png)
 *Landing page*
 
-![login](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/login.PNG)
+![login](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/login.png)
 *Login*
 
-![signup](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/signup.PNG)
+![signup](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/signup.png)
 *Signup*
 
-![admin](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/admin.PNG)
+![admin](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/admin.png)
 *Admin page, where new, weekly stats are added to the database*
 
-![dashboard-initial](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/dashboard-initial.PNG)
+![dashboard-initial](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/dashboard-initial.png)
 *Dashboard, initially*
 
-![player-list](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/player-list.PNG)
+![player-list](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/player-list.png)
 *Player list, after user submits selection*
 
-![tabs](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/tabs.PNG)
+![tabs](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/tabs.png)
 *Info Tabs*
 
-![contact](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/contact.PNG)
+![contact](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/contact.png)
 *Contact form*
 
-![help](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/help.PNG)
+![help](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/help.png)
 *Help box*
 
 ## Planning:
 
-![wireframe](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/wireframe.jpg)
+![wireframe](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/wireframe.jpeg)
 *Basic wireframe.*
 
 There were a lot of features in this stage that I had to remove due to them being much more complicated than I had initially realized, like the news features and the social media stuff. However, they are planned for future versions.
