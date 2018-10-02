@@ -4,7 +4,7 @@
 
 Active link: https://wwcd-dfs.herokuapp.com/
 
-Technology used: React, Express, Node, MongoDB, R, Docker
+Technology used: React, Express, Node, MongoDB, R, Docker, Mailgun
 
 Backend Repo: https://github.com/maxemileffort/wwcd-fullstack-capstone-node
 
@@ -40,6 +40,12 @@ And, also at the time of this writing, it did help me win $130 from a $30 invest
 ![tabs](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/tabs.PNG)
 *Info Tabs*
 
+![contact](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/contact.PNG)
+*Contact form*
+
+![help](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/help.PNG)
+*Help box*
+
 ## Planning:
 
 ![wireframe](https://raw.githubusercontent.com/maxemileffort/wwcd-fullstack-capstone-react/master/public/screenshots/wireframe.jpg)
@@ -60,6 +66,10 @@ Once logged in, admin users are taken to the admin page, where they can redirect
 Other users are taken straight to their dashboard.
 
 There, users can select a week during a season and view aggregated projections for NFL players, as well as some summary statistics at the bottom in the tabs.
+
+There's also a help option in the main navbar that renders different messages depending on what page the user is on.
+
+And lastly, there is a contact form where the user can submit a message that emails me directly.
 
 ### Features to be added later:
 - Make the player list searchable
