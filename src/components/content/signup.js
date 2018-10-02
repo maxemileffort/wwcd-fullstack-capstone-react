@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from "react-router-dom";
 
 export default function Signup(props){
@@ -8,7 +8,7 @@ export default function Signup(props){
   let password1 = React.createRef()
   let password2 = React.createRef()
     return(
-      <main className="main--unflex">
+      <Fragment>
         <section className="">
           <h3>Time to Join the Winning Team</h3>
           <form 
@@ -40,6 +40,6 @@ export default function Signup(props){
           </ul>
       </section>
       <Link to="/user/login">Already have an account? <span className="underline">Login</span></Link>
-      </main>
+      </Fragment>
     )
 }

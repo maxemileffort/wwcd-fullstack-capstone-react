@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link, Redirect } from "react-router-dom";
 
 export default function Admin(props){
@@ -12,9 +12,9 @@ export default function Admin(props){
         return <Redirect to="/dashboard" />
     } else if (props.appState.user.accountType === "Admin"){
         return (
-            <div>
+            <Fragment>
                 <h2>Admin Page</h2>
-                <main className="main--unflex">
+                <section>
                     <form action="#" method="post" id="db-update" 
                         onSubmit={event=>{
                             event.preventDefault();
@@ -24,7 +24,7 @@ export default function Admin(props){
                             props.sendSalariesToDb(formData)
                         }}>
                         <p>Download <a className="link-no-box" href="https://www.draftkings.com/lineup/upload" target="_blank" rel="noopener noreferrer">Salaries</a></p>
-                        <section>
+                    <section>
                             <div className="file-chooser">
                                 <h4>Upload Salaries Here</h4>
                                 <input ref={file} type="file" name="salaries" id="salaries-file" accept=".csv"/>
@@ -39,8 +39,8 @@ export default function Admin(props){
                     </form>
                 <div className="results"></div>
                 <Link to="/dashboard">Dashboard</Link>
-                </main>
-            </div>
+                </section>
+            </Fragment>
             )
     } else {
        return <Redirect to="/" />

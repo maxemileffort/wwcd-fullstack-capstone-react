@@ -13,7 +13,7 @@ import Contact from './contact'
 export default function Content(_props){
     console.log(_props)
     return(
-        <main>
+        <main className="main--unflex">
             <Route exact path='/' render={(props)=><LandingPage routerProps={props}/>} />
             <Route exact path='/about' component={About} />
             <Route exact path='/account' render={(props)=><Account routerProps={props} {..._props}/>} />
