@@ -23,7 +23,13 @@ export default function Navbar(props){
     }>
       <i className="fas fa-bars"></i> Menu
     </Link>
-    <ul>
+    <ul onClick={()=>{
+      if(!document.querySelector('.flex-nav ul').classList.contains('open')){
+        document.querySelector('.flex-nav ul').classList.add('open')
+      } else if(document.querySelector('.flex-nav ul').classList.contains('open')){
+        document.querySelector('.flex-nav ul').classList.remove('open')
+      }
+    }}>
       <li><Link to="/">Home</Link></li>
       {/* check to see if user is logged in and render logout/login accordingly */}
       {props.isLoggedIn ? (

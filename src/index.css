@@ -326,6 +326,12 @@ section, footer {
   .tabs, .top-5, #dashboard-player-list{
     text-align: center;
   }
+  #dashboard-player-list{
+    max-width: 80%;
+  }
+  .single-tab{
+    padding: 10px;
+  }
   select{
     width: 30%;
   }
@@ -351,5 +357,12 @@ section, footer {
   }
   .flex-nav ul.open {
     display:flex;
+  }
+  .sidebar{
+    height: 100%;
+  }
+  .shrink{
+    max-width: 80%;
+    margin: 0 auto;
   }
 }

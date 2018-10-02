@@ -380,6 +380,7 @@ export default class Rundown extends Component{
 							this.handleTabSwitch(event);
 						}}
 					>
+						<h3>Key Performance Indicators</h3>
 						<a href="#" className="single-tab st1 points active">Points</a>
 						<a href="#" className="single-tab st2 floor">Floor</a>
 						<a href="#" className="single-tab st3 ceiling">Ceiling</a>

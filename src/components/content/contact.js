@@ -7,7 +7,7 @@ export default function Contact(props){
     let email = React.createRef();
     let message = React.createRef();
     return (
-        <div className="contact-form">
+        <div className="contact-form shrink">
             <h1>Contact</h1>
             <p>
                 Feel free to send me a message.
