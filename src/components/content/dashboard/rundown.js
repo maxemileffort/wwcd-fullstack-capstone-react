@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 
+import Loading from '../../misc/loading';
+
 export default class Rundown extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
+			loading: false,
 			season: 'select',
 			week: 'select',
 			position: 'select',
@@ -15,7 +18,8 @@ export default class Rundown extends Component{
 	}
 
 	// watches all the selects and passes payload when they are all chosen
-	handleSelects = () => { //this method has the bug
+	handleSelects = () => { 
+		this.setState({loading: true})
 		let season = this.state.season;
 		let week = this.state.week;
 		let position = this.state.position;
@@ -299,6 +303,7 @@ export default class Rundown extends Component{
 			}
 		})
 		
+		this.setState({loading: false})
 		// clear out html outputs
 		document.querySelector("#dashboard-player-list").innerHTML = '';
 		document.querySelector("#top-5-points").innerHTML = '';
@@ -370,6 +375,7 @@ export default class Rundown extends Component{
 							this.handleSelects();
 						}}
 					>Get Players</button>
+					{(this.state.loading) ? <Loading /> : false}
 					<div id='dashboard-player-list'>
 						<p>Rendered players based on select option and maybe some checkboxes for stats</p>
 					</div>

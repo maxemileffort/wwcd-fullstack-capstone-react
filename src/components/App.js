@@ -4,6 +4,7 @@ import axios from 'axios';
   
 import Header from './header/header'
 import Errors from './misc/errors'
+import Loading from './misc/loading';
 import Content from './content/content'
 import Footer from './misc/footer'
 
@@ -23,6 +24,7 @@ class App extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+            loading: false,
             loggedIn: false,
             user: null,
             error: null,
@@ -47,14 +49,25 @@ class App extends React.Component{
         console.log(msgObj);
 
         let url = '/message/send/'
-
-        axios.post(url, msgObj, basicConfig)
-        .then(response=>{
-            console.log(response.data.message)
+        
+        this.setState({loading: true}, ()=>{
+			axios.post(url, msgObj, basicConfig)
+        	.then(response=>{
+                this.setState({
+                    loading: false,
+                    confirmation: "Your message has been sent."
+                })
+            	console.log(response.data.message)
+        	})
+        	.catch(err=>{
+                this.setState({
+                    loading: false,
+                    error: err
+                })
+            	console.log(err)
+        	})
         })
-        .catch(err=>{
-            console.log(err)
-        })
+        
     }
 
     handleLogin = (email, password)=>{
@@ -68,51 +81,56 @@ class App extends React.Component{
             let url = '/auth/user/login'
             
             // doesn't use the token, so doesn't need the auth config
-            axios.post(url, {
-                email,
-                password
-            }, basicConfig)
-            .then((response)=>{
-                // if response has data.user object...
-                if (response.data.user){
-                    this.setState({
-                        loggedIn: true,
-                        user: response.data.user,
-                        error: null,
-                        confirmation: null
-                    })
-                    window.localStorage.setItem('wwcddfstoken', response.data.token)
-
-                    authConfig = {
-                        baseURL,
-                        headers: { 
-                            "Authorization": window.localStorage.getItem('wwcddfstoken') || null,
+            this.setState({loading: true}, ()=>{
+				axios.post(url, {
+                    email,
+                    password
+                }, basicConfig)
+                .then((response)=>{
+                    // if response has data.user object...
+                    if (response.data.user){
+                        this.setState({
+                            loading: false,
+                            loggedIn: true,
+                            user: response.data.user,
+                            error: null,
+                            confirmation: null
+                        })
+                        window.localStorage.setItem('wwcddfstoken', response.data.token)
+    
+                        authConfig = {
+                            baseURL,
+                            headers: { 
+                                "Authorization": window.localStorage.getItem('wwcddfstoken') || null,
+                            }
+                        }
+    
+                        if(this.state.user.accountType === 'Admin'){
+                            // if user that logs in is Admin, route to admin page
+                            this.props.history.push("/admin")
+                        } else if (this.state.user.accountType === 'Free' || this.state.user.accountType === 'Pro'){
+                            // if they are a member but not admin, take user to dashboard
+                            this.props.history.push("/dashboard")
                         }
                     }
-
-                    if(this.state.user.accountType === 'Admin'){
-                        // if user that logs in is Admin, route to admin page
-                        this.props.history.push("/admin")
-                    } else if (this.state.user.accountType === 'Free' || this.state.user.accountType === 'Pro'){
-                        // if they are a member but not admin, take user to dashboard
-                        this.props.history.push("/dashboard")
+                    else {
+                        //otherwise, rerender login page
+                        this.setState({
+                            loading: false,
+                            error: "Authentication failed."
+                        })
+                        this.props.history.push("/user/login")
                     }
-                }
-                else {
-                    //otherwise, rerender login page
+                })
+                .catch((error)=>{
+                    console.log(error);
                     this.setState({
                         error: "Authentication failed."
                     })
                     this.props.history.push("/user/login")
-                }
+                });
             })
-            .catch((error)=>{
-                console.log(error);
-                this.setState({
-                    error: "Authentication failed."
-                })
-                this.props.history.push("/user/login")
-            });
+            
         }
     }
 
@@ -124,7 +142,7 @@ class App extends React.Component{
 
         let url = `/check-duplicate-email/${inputEmail}`
         
-        axios.get(url, basicConfig)
+            axios.get(url, basicConfig)
         .then(response=>{
             console.log(response)
             if (response.data.entries.length > 0){
@@ -138,6 +156,9 @@ class App extends React.Component{
                     document.querySelector("#account-update-submit").setAttribute("disabled", "disabled")
                 }
             } else {
+                this.setState({
+                    confirmation: "Email address is available."
+                })
                 if (document.querySelector("#create-submit") && document.querySelector("#create-submit").hasAttribute('disabled')){
                     document.querySelector("#create-submit").removeAttribute("disabled")
                 }
@@ -153,6 +174,8 @@ class App extends React.Component{
             })
         })
     }
+    
+
 
     handleSignup = (email, username, password1, password2)=>{
         console.log('Trying to signup.')
@@ -177,24 +200,28 @@ class App extends React.Component{
         } else {
             let url = '/user/create/'
 
-            axios.post(url, {
-            email: _email,
-            username: _username,
-            password: _password1
-        }, basicConfig)
-        .then((response)=>{
-            this.setState({
-                confirmation: `${response.data.message} You will be returned to the home screen in 5 seconds. To activate your account, please login again.`
+            this.setState({loading: true}, ()=>{
+                axios.post(url, {
+                    email: _email,
+                    username: _username,
+                    password: _password1
+                }, basicConfig)
+                .then((response)=>{
+                    this.setState({
+                        loading: false,
+                        confirmation: `${response.data.message} You will be returned to the home screen in 5 seconds. To activate your account, please login again.`
+                    })
+                    setTimeout(this.handleLogout, 5000);
+                })
+                .catch((error)=>{
+                    console.log(error);
+                    this.setState({
+                        loading: false,
+                        error: error
+                    })
+                    this.props.history.push("/")
+                });
             })
-            setTimeout(this.handleLogout, 5000);
-        })
-        .catch((error)=>{
-            console.log(error);
-            this.setState({
-                error: error
-            })
-            this.props.history.push("/")
-        });
         }
     }
 
@@ -301,9 +328,10 @@ class App extends React.Component{
     render(){
         return(
             <Fragment>
-                <div className="wrapper" onClick={this.hideErrorsAndConfirmations}>
+                <div className="wrapper" onClick={this.hideErrorsAndConfirmations} onChange={this.hideErrorsAndConfirmations}>
                     <Header isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout} />
                     <Errors appState={this.state}/>
+                    {this.state.loading ? <Loading /> : false}
                     <Content 
                         appState={this.state} 
                         handleLogin={this.handleLogin} 
