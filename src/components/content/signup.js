@@ -19,13 +19,17 @@ export default function Signup(props){
               event.preventDefault();
               props.handleSignup(email, username, password1, password2)
             }}>
+            <label htmlFor="create-username">Username:</label>
             <input ref={username} id="create-username" type="text" name="userame" placeholder="Username"/>
+            <label htmlFor="create-email">Email:</label>
             <input ref={email} id="create-email" type="email" name="email" placeholder="Email" 
               onBlur={()=>{
                 let inputEmail = email.current.value;
                 props.checkEmailExists(inputEmail);
               }}/>
+            <label htmlFor="create-password1">Password:</label>
             <input ref={password1} id="create-password1" type="password" name="password1"  placeholder="Password"/>
+            <label htmlFor="create-password2">Retype Password:</label>
             <input ref={password2} id="create-password2" type="password" name="password2" placeholder="Retype Password"/>
             <input id="create-submit" type="submit" value="Sign up" className="btn"/>
           </form>

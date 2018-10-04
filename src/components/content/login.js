@@ -24,7 +24,9 @@ export default function Login(props){
                 console.log(password)
                 props.handleLogin(email.current.value, password.current.value);
             }}>
+              <label htmlFor="login-email">Email:</label>
               <input ref={email} id="login-email" type="email" name="email" placeholder="Email" defaultValue="abc@abc.com"/>
+              <label htmlFor="login-password">Password:</label>
               <input ref={password} id="login-password" type="password" name="password"  placeholder="Password" defaultValue="123"/>
               <input id="login-submit" type="submit" value="Login" className="btn" />
             </form>

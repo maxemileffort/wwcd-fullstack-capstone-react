@@ -23,8 +23,11 @@ export default function Contact(props){
                     props.sendMessage(msgObj)
                 }
             }>
+                <label htmlFor="contact-username">Username:</label>
                 <input ref={username} type="text" id="contact-username" placeholder="Username" />
+                <label htmlFor="contact-email">Email:</label>
                 <input ref={email} type="email" id="contact-email" placeholder="Email"/>
+                <label htmlFor="contact-message">Message:</label>
                 <textarea ref={message} id="contact-message" placeholder="Message..."/>
                 <input type="submit" id="contact-submit" className="btn"/>
             </form>
