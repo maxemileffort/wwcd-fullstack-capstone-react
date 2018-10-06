@@ -324,7 +324,7 @@ export default class Rundown extends Component{
 		return(
 			<div className="dashboard__format">
 				<section className="lineup">
-					<label htmlFor="dashboard-season-select">Season:</label>
+					<label className="dashboard-label" htmlFor="dashboard-season-select">Season:</label>
 					<select name="dashboard-season-select" className="dashboard-select" id="dashboard-season-select"
 						onChange={(event)=>{
 							this.setState({season: event.target.value});
@@ -333,7 +333,7 @@ export default class Rundown extends Component{
 						<option value="select">Select</option>
 						<option value="2018">2018</option>
 					</select>
-					<label htmlFor="dashboard-week-select">Week:</label>
+					<label className="dashboard-label" htmlFor="dashboard-week-select">Week:</label>
 					<select name="dashboard-week-select" className="dashboard-select" id="dashboard-week-select"
 						onChange={(event)=>{
 							this.setState({week: event.target.value});
@@ -345,7 +345,7 @@ export default class Rundown extends Component{
 						<option value="5">5</option>
 						<option value="6">6</option>
 					</select>
-					<label htmlFor="dashboard-position-select">Position:</label>
+					<label className="dashboard-label" htmlFor="dashboard-position-select">Position:</label>
 					<select name="dashboard-position-select" className="dashboard-select" id="dashboard-position-select"
 						onChange={(event)=>{
 							this.setState({position: event.target.value});
@@ -359,7 +359,7 @@ export default class Rundown extends Component{
 						<option value="DST">DST</option>
 						<option value="FLEX">FLEX</option>
 					</select>
-					<label htmlFor="dashboard-average-select">Average Type:</label>
+					<label className="dashboard-label" htmlFor="dashboard-average-select">Average Type:</label>
 					<select name="dashboard-average-select" className="dashboard-select" id="dashboard-average-select"
 						onChange={(event)=>{
 							this.setState({avg: event.target.value});
