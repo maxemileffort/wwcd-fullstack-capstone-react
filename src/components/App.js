@@ -9,7 +9,7 @@ import Content from './content/content'
 import Footer from './misc/footer'
 
 
-// for axiosConfigs, just uncomment out which one
+// for axiosConfigs, just uncomment out whichever one
 // dev baseURL: 
 // const baseURL = "http://localhost:8080/"
 // prod proxy:

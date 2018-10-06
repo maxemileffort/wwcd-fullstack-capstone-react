@@ -19,7 +19,6 @@ export default class Rundown extends Component{
 
 	// watches all the selects and passes payload when they are all chosen
 	handleSelects = () => { 
-		this.setState({loading: true})
 		let season = this.state.season;
 		let week = this.state.week;
 		let position = this.state.position;
@@ -27,6 +26,7 @@ export default class Rundown extends Component{
 		if(position === "select" || season === "select" || week === "select" || avg === "select"){
 			return false
 		} else {
+			this.setState({loading: true})
 			season = Number(season);
 			week = Number(week);
 			//functions run in sequence as callbacks, starting with this one:
