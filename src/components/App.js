@@ -325,6 +325,23 @@ class App extends React.Component{
         })
     }
 
+    pingServer = () =>{
+        let url = '/ping-server';
+
+        axios.get(url, basicConfig)
+        .then(response=>{
+            console.log(response)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+
+    componentDidMount(){
+        // spins up heroku dyno
+        this.pingServer();
+    }
+
     render(){
         return(
             <Fragment>
