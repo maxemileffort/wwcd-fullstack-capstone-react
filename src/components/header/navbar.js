@@ -31,15 +31,7 @@ export default function Navbar(props){
       }
     }}>
       <li><Link to="/">Home</Link></li>
-      {/* check to see if user is logged in and render logout/login accordingly */}
-      {props.isLoggedIn ? (
-        <Fragment>
-          <li><Link to="/dashboard/">Dashboard</Link></li>
-          <li><Link to="/" onClick={()=>props.handleLogout()}>Log Out</Link></li>
-        </Fragment>
-      ) : (
-        <li><Link to="/user/login">Log In</Link></li>
-        )}
+      
       {/* <li><Link to="#">News</Link></li> feature to be added later*/}
       <li><Link to="/about">About</Link></li>
       <li><Link to="/contact">Contact</Link></li>
@@ -49,17 +41,18 @@ export default function Navbar(props){
             document.querySelector('.sidebar').style.display = "block";
             document.querySelector('.sidebar').style.width = "100%";
         }}
-      ><Link to="#"><i className="far fa-question-circle sidebar-open"></i> Help</Link></li>
-      
-      <li className="social">
-        <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+      >
+        <Link to="#"><i className="far fa-question-circle sidebar-open"></i> Help</Link>
       </li>
-      <li className="social">
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-square"></i></a>
-      </li>
-      <li className="social">
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
-      </li>
+      {/* check to see if user is logged in and render logout/login accordingly */}
+      {props.isLoggedIn ? (
+        <Fragment>
+          <li><Link to="/dashboard/">Dashboard</Link></li>
+          <li><Link to="/" onClick={()=>props.handleLogout()}>Log Out</Link></li>
+        </Fragment>
+      ) : (
+        <li><Link to="/user/login">Log In</Link></li>
+        )}
     </ul>
   </nav>
       
