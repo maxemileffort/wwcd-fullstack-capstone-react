@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 
-import Account from './Account';
+import Account from './account';
 
 describe('<Account />', () => {
     let props = {
