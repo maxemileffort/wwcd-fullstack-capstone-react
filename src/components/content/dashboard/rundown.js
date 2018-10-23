@@ -340,10 +340,10 @@ export default class Rundown extends Component{
 						}}
 					>
 						<option value="select">Select</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
 						<option value="5">5</option>
 						<option value="6">6</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
 					</select>
 					<label className="dashboard-label" htmlFor="dashboard-position-select">Position:</label>
 					<select name="dashboard-position-select" className="dashboard-select" id="dashboard-position-select"
